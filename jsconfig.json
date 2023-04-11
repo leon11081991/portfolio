@@ -5,7 +5,7 @@
       "@/bootstrap/*": ["./node_modules/bootstrap/*"],
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],
-      "@stores/*": ["./src/stores/*"],
+      "@store/*": ["./src/store/*"],
       "@utils/*": ["./src/utils/*"]
     }
   }

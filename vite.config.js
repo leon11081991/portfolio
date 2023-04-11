@@ -29,8 +29,8 @@ export default defineConfig({
         ),
       },
       {
-        find: "@stores",
-        replacement: fileURLToPath(new URL("./src/stores", import.meta.url)),
+        find: "@store",
+        replacement: fileURLToPath(new URL("./src/store", import.meta.url)),
       },
       {
         find: "@utils",
