@@ -76,8 +76,8 @@ const windowWidth = ref(null); // 視窗寬度
 const checkScreen = () => {
   windowWidth.value = window.innerWidth;
 
-  // 視窗小於750,啟用手機設定
-  if (windowWidth.value <= 750) {
+  // 視窗小於768,啟用手機設定
+  if (windowWidth.value <= 768) {
     mobile.value = true;
     return;
   }
@@ -115,7 +115,6 @@ const toggleMenu = () => {
   &__inner {
     position: relative;
     height: 100%;
-    //margin-right: 20px;
   }
 }
 .logo {
@@ -181,7 +180,6 @@ const toggleMenu = () => {
   width: 100%;
   height: 100%;
   padding-left: 96px;
-  //background: #3e3e3e;
   &__list {
     display: flex;
     height: 100%;
@@ -204,7 +202,6 @@ const toggleMenu = () => {
   left: 0;
   width: 100%;
   background-color: $third;
-  //transition: all 1s ease-in-out;
   &__list {
     position: relative;
     height: 100vh;
@@ -221,29 +218,28 @@ const toggleMenu = () => {
   }
 }
 
-.mobileMenu-enter-from {
-  top: -100%;
-  //opacity: 0;
-}
-.mobileMenu-enter-to {
-  top: 0;
-  //opacity: 1;
-}
-.mobileMenu-enter-active {
-  transition: all 0.7s;
-  transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
-}
-.mobileMenu-leave-from {
-  top: 0;
-  //opacity: 1;
-}
-.mobileMenu-leave-to {
-  top: 100vh;
-  //opacity: 0;
-}
-.mobileMenu-leave-active {
-  transition: all 0.7s;
-  transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+.mobileMenu {
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.7s;
+    transition-timing-function: $easeInOutQuart;
+  }
+  &-enter {
+    &-from {
+      top: -100%;
+    }
+    &-to {
+      top: 0;
+    }
+  }
+  &-leave {
+    &-from {
+      top: 0;
+    }
+    &-to {
+      top: 100vh;
+    }
+  }
 }
 
 .menu-open-bar {
@@ -260,7 +256,7 @@ const toggleMenu = () => {
     visibility: visible;
     transform: translate3d(0, 100vh, 0);
     transition: transform 0.8s;
-    transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+    transition-timing-function: $easeInOutQuart;
   }
 }
 </style>
