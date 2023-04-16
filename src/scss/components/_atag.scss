@@ -1,0 +1,10 @@
+a {
+  // color: color("gray03");
+  // transition: all 0.3s ease-in-out;
+  display: block;
+  text-decoration: none;
+  &:hover {
+    // color: color("primary");
+    text-decoration: none;
+  }
+}
