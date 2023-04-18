@@ -109,9 +109,9 @@ const toggleMenu = () => {
   left: 0;
   width: 100%;
   height: 96px;
-  background-color: $third;
   z-index: 99;
   border-bottom: 1px solid $border-color;
+  background-color: $secondary;
   &__inner {
     position: relative;
     height: 100%;
@@ -148,7 +148,7 @@ const toggleMenu = () => {
     width: 40px;
     height: 3px;
     border-radius: 5px;
-    background: $secondary;
+    background: $secondary4;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -158,7 +158,7 @@ const toggleMenu = () => {
       position: absolute;
       content: "";
       height: 3px;
-      background: #fff;
+      background: $secondary4;
       border-radius: 5px;
       transition: all 0.25s;
     }
@@ -189,7 +189,7 @@ const toggleMenu = () => {
     margin: 0 20px;
     &-link {
       position: relative;
-      color: $white;
+      color: $secondary4;
       line-height: 96px;
       font-size: 22px;
     }
