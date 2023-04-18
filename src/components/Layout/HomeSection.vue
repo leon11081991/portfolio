@@ -26,7 +26,7 @@ console.log(props.section);
 const sectionClass = ref(props.section.name);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .home-section {
   position: relative;
   padding-bottom: 104px;

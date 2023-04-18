@@ -29,7 +29,7 @@
   </footer>
 </template>
 <script setup></script>
-<style lang="scss">
+<style lang="scss" scoped>
 .web_footer {
   position: relative;
   padding: 30px;
