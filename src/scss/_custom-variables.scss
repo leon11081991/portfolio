@@ -1,12 +1,21 @@
 // Color
-$primary: #393939;
-$secondary: #e0e0e0;
-$third: #191c20;
+//$primary: #393939;
+// $primary: #0a192f;
+$primary: #64ffda;
+$secondary: #0a192f;
+// $secondary: #9ba1b1;
+$secondary2: #112240;
+$secondary3: #020c1b;
+$secondary4: #8892b0;
+$third: #0a192f;
 $white: #e0e0e0;
+$focus: #ccd6f6;
 
 // Body
-$body-bg: #1e2127;
-$body-color: #9ba1b1;
+//$body-bg: #1e2127;
+$body-bg: $secondary;
+//$body-color: #9ba1b1;
+$body-color: #8892b0;
 // $body-text-align: null !default;
 
 // Grid breakpoints
@@ -17,7 +26,7 @@ $body-color: #9ba1b1;
 $border-color: #5b5e65;
 
 // Typography
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;700;800;900&display=swap");
 $FiraSans: "Fira Sans", sans-serif;
 
 // Easing
