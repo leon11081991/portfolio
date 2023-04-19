@@ -1,54 +1,38 @@
 <template>
   <header class="web_header">
     <div class="web_header__inner">
-      <h1 class="logo">
-        <router-link class="home-path" to="#">LEON</router-link>
-      </h1>
-      <nav class="web_nav" v-if="!mobile">
-        <ul class="web_nav__list">
-          <li class="web_nav__item">
-            <router-link class="web_nav__item-link" to="#">Info</router-link>
-          </li>
-          <li class="web_nav__item">
-            <router-link class="web_nav__item-link" to="#"
-              >Articles</router-link
-            >
-          </li>
-          <li class="web_nav__item">
-            <router-link class="web_nav__item-link" to="#"
-              >Create Post</router-link
-            >
-          </li>
-          <li class="web_nav__item">
-            <router-link class="web_nav__item-link" to="#"
-              >Login/Register</router-link
-            >
-          </li>
-        </ul>
-      </nav>
-      <div class="menu" @click="toggleMenu" v-if="mobile">
+      <div class="logo-box">
+        <h1 class="logo">
+          <router-link class="siteName" to="#">
+            <Logo class="logoIcon" />
+            I'm logo
+          </router-link>
+        </h1>
+      </div>
+
+      <div class="carousel-box"></div>
+      <div class="menu" @click="toggleMenu">
         <span></span>
       </div>
-      <Transition name="mobileMenu">
-        <nav class="mobile_nav" v-if="mobileMenu">
-          <ul class="mobile_nav__list">
-            <li class="mobile_nav__item">
-              <router-link class="mobile_nav__item-link" to="#"
-                >Info</router-link
-              >
+
+      <Transition name="Menu">
+        <nav class="web_nav" v-if="menu">
+          <ul class="web_nav__list">
+            <li class="web_nav__item">
+              <router-link class="web_nav__item-link" to="#">Info</router-link>
             </li>
-            <li class="mobile_nav__item">
-              <router-link class="mobile_nav__item-link" to="#"
+            <li class="web_nav__item">
+              <router-link class="web_nav__item-link" to="#"
                 >Articles</router-link
               >
             </li>
-            <li class="mobile_nav__item">
-              <router-link class="mobile_nav__item-link" to="#"
+            <li class="web_nav__item">
+              <router-link class="web_nav__item-link" to="#"
                 >Create Post</router-link
               >
             </li>
-            <li class="mobile_nav__item">
-              <router-link class="mobile_nav__item-link" to="#"
+            <li class="web_nav__item">
+              <router-link class="web_nav__item-link" to="#"
                 >Login/Register</router-link
               >
             </li>
@@ -63,15 +47,15 @@
 <script setup>
 // import
 import { ref, Transition } from "vue";
+import Logo from "@assets/logo.svg";
 
 // data
 const mobile = ref(null);
-const mobileMenu = ref(false);
+const menu = ref(false);
 const menuBar = ref(false);
 const windowWidth = ref(null); // 視窗寬度
 
 // methods
-
 // 偵測視窗寬度
 const checkScreen = () => {
   windowWidth.value = window.innerWidth;
@@ -79,25 +63,23 @@ const checkScreen = () => {
   // 視窗小於768,啟用手機設定
   if (windowWidth.value <= 768) {
     mobile.value = true;
+    console.log("Mobile");
     return;
   }
   mobile.value = false;
-  mobileMenu.value = false; // 避免開啟手機選單後,視窗又被拉至桌機寬度
+  console.log("Desktop");
   return;
 };
 window.addEventListener("resize", checkScreen); // 偵測當前視窗寬度
 checkScreen(); // 初始偵測當前視窗寬度
 
+// 點擊Menu
 const toggleMenu = () => {
-  mobileMenu.value = !mobileMenu.value;
+  menu.value = !menu.value;
   menuBar.value = true;
   // 1秒後移除
   setTimeout(() => {
     menuBar.value = false;
-    console.log(
-      "mobileMenu, menuBar: ",
-      mobileMenu.value + ", " + menuBar.value
-    );
   }, 1000);
 };
 </script>
@@ -108,35 +90,51 @@ const toggleMenu = () => {
   top: 0;
   left: 0;
   width: 100%;
-  height: 96px;
+  height: $header-h * 1px;
   z-index: 99;
-  border-bottom: 1px solid $border-color;
-  background-color: $secondary;
+  background-color: $white;
   &__inner {
     position: relative;
     height: 100%;
   }
-}
-.logo {
-  position: absolute;
-  width: 96px;
-  .home-path {
-    position: relative;
-    text-indent: -9999px;
-    height: 0;
-    padding-top: 100%;
-    background-color: $secondary;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: $primary;
+    z-index: 99;
   }
 }
-
+.logo {
+  &-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 328px;
+    height: $header-h * 1px;
+    display: flex;
+    align-items: center;
+    padding-left: 132px;
+  }
+  //display: flex;
+  //align-items: center;
+  .logoIcon {
+    margin-right: 6px;
+  }
+  .siteName {
+    @extend %base-text-style;
+    color: $primary;
+  }
+}
 .menu {
-  height: 55px;
-  width: 55px;
+  height: $menu-h * 1px;
+  width: $menu-w * 1px;
   position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translate(0, -50%);
+  top: 0;
+  right: 0;
   z-index: 1;
+  background-color: $primary;
   &:hover {
     span,
     span::after {
@@ -145,63 +143,39 @@ const toggleMenu = () => {
   }
   span {
     display: block;
-    width: 40px;
-    height: 3px;
-    border-radius: 5px;
-    background: $secondary4;
     position: absolute;
     top: 50%;
+    left: 33%;
     transform: translateY(-50%);
+    width: 48px;
+    height: 1px;
+    background: $white;
     transition: all 0.25s;
     &::before,
     &::after {
       position: absolute;
       content: "";
-      height: 3px;
-      background: $secondary4;
-      border-radius: 5px;
+      height: 1px;
+      background: $white;
       transition: all 0.25s;
     }
     &::before {
-      width: 55px;
+      width: 57px;
       top: -15px;
     }
     &::after {
-      width: 20px;
+      width: 43px;
       bottom: -15px;
     }
   }
 }
 
 .web_nav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding-left: 96px;
-  &__list {
-    display: flex;
-    height: 100%;
-    padding: 0 45px;
-  }
-  &__item {
-    margin: 0 20px;
-    &-link {
-      position: relative;
-      color: $secondary4;
-      line-height: 96px;
-      font-size: 22px;
-    }
-  }
-}
-
-.mobile_nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: $third;
+  background-color: $white;
   &__list {
     position: relative;
     height: 100vh;
@@ -213,12 +187,12 @@ const toggleMenu = () => {
   &__item {
     margin: 30px 20px;
     &-link {
-      color: $white;
+      color: $primary;
     }
   }
 }
 
-.mobileMenu {
+.Menu {
   &-enter-active,
   &-leave-active {
     transition: all 0.7s;
@@ -248,8 +222,8 @@ const toggleMenu = () => {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #262a32;
-  z-index: 1;
+  background-color: $primary;
+  z-index: 101;
   transform: translate3d(0, -40vh, 0);
   visibility: hidden;
   &.toggle {
