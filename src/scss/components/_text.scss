@@ -1,0 +1,142 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+
+- 0.0- base
+- 1.0- font-size (UI)
+- 2.0- font-color
+- 3.0- text level (UI)
+
+--------------------------------------------------------------*/
+
+// >> 0.0- base
+%base-text-style {
+  font-size: $base-font-size * 1px;
+  font-family: $Arial;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 1px;
+}
+
+%nav-text-style {
+  // font-family: $CormorantFont;
+  font-weight: 500;
+  line-height: 27px;
+  letter-spacing: 1px;
+  font-size: 18px;
+  @include media-breakpoint-down(sm) {
+    // @include remCalc(font-size, 14);
+    line-height: 20px;
+  }
+}
+
+// >> 1.0- font-size
+@each $level, $size in $txt-size {
+  .txt-#{$level} {
+    font-size: $size * 1px;
+  }
+}
+
+// >> 2.0- font-color
+@each $name, $color in $colors {
+  .txt-#{$name} {
+    color: $color;
+  }
+}
+
+// >> 3.0- text level
+.txt-headline1 {
+  @extend .txt-h1;
+  font-family: $Arial;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 1px;
+
+  // @include media-breakpoint-down(sm) {
+  //   @include remCalc(font-size, 16);
+  //   line-height: 20px;
+  // }
+}
+
+.txt-headline2 {
+  @extend .txt-h2;
+  font-family: $Arial;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 1px;
+
+  // @include media-breakpoint-down(sm) {
+  //   @include remCalc(font-size, 20);
+  //   line-height: 24px;
+  // }
+}
+
+.txt-headline3 {
+  @extend .txt-h3;
+  font-family: $Arial;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 1px;
+
+  // @include media-breakpoint-down(sm) {
+  //   @include remCalc(font-size, 16);
+  //   font-weight: 500;
+  //   line-height: 20px;
+  // }
+}
+
+.txt-headline4 {
+  @extend .txt-h4;
+  font-family: $NotoSansTC;
+  font-weight: 500;
+  line-height: 27px;
+  letter-spacing: 0.5px;
+
+  //@include media-breakpoint-down(sm) {
+  // @include remCalc(font-size, 14);
+  //line-height: 18px;
+  //}
+}
+
+.txt-headline5 {
+  @extend .txt-h5;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 1px;
+
+  @include media-breakpoint-down(sm) {
+    // @include remCalc(font-size, 14);
+  }
+}
+
+.txt-p {
+  // font-family: $Arial;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 1px;
+
+  @include media-breakpoint-down(sm) {
+    // @include remCalc(font-size, 14);
+    line-height: 22px;
+  }
+}
+
+.txt-s {
+  // font-family: $CormorantFont;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 1px;
+
+  @include media-breakpoint-down(sm) {
+    // @include remCalc(font-size, 12);
+    line-height: 18px;
+  }
+}
+
+.txt-btn {
+  font-family: $Arial;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 1px;
+}
