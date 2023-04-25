@@ -1,7 +1,8 @@
 a {
-  color: $white;
-  // transition: all 0.3s ease-in-out;
   display: block;
+  @extend %base-text-style;
+  line-height: 36px;
+  color: $primary;
   text-decoration: none;
   transition: all 0.5s ease-in-out;
   &:hover {
