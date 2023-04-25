@@ -1,12 +1,33 @@
 body {
+  @extend %base-text-style;
   background-color: $body-bg;
-  font-family: $FiraSans;
 }
 
 .web_wrapper {
   position: relative;
-  padding-top: 96px;
-  padding-left: 96px;
+  padding-top: $header_h-desktop * 1px;
+  padding-right: $aside_w-desktop * 1px;
+  padding-bottom: $footer_h-desktop * 1px;
+  @include media-breakpoint-down(lg) {
+    padding-top: $header_h-pad * 1px;
+    padding-right: $aside_w-pad * 1px;
+    padding-bottom: $footer_h-pad * 1px;
+  }
+}
+
+// Custom container
+.page-container {
+  @include make-container();
+  @media (min-width: 375px) {
+    max-width: 91.4%;
+  }
+  @media (min-width: 768px) {
+    max-width: 89.5%;
+  }
+  @media (min-width: 1280px) {
+    //max-width: 1176px;
+    max-width: 1200px;
+  }
 }
 
 .webgl {
