@@ -1,0 +1,37 @@
+.profile-field {
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+  &-title {
+    @extend %base-text-style;
+    color: $gray02;
+    margin-bottom: 0.5rem;
+  }
+  &-input {
+    padding: 0.5rem 2rem;
+    background: $white;
+    border: 1px solid $primary;
+    max-width: $input_w;
+    width: $input_w;
+    &.disabled {
+      background: $gray05;
+      cursor: not-allowed;
+
+      input {
+        pointer-events: none;
+      }
+    }
+
+    input {
+      @extend .txt-s;
+      background: transparent;
+      color: $gray03;
+      padding: 0 0.5rem;
+      width: 100%;
+      border: none;
+      &:focus {
+        border: none;
+      }
+    }
+  }
+}

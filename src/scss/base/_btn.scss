@@ -1,0 +1,140 @@
+%btn_base {
+  @extend %base-text-style;
+  padding: $btn-padding-y $btn-padding-x;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: unset;
+  background: $primary;
+  color: $white;
+  transition: all 0.5s ease-in-out;
+  //cursor: pointer;
+  &:hover {
+    background: $secondary02;
+    color: $white;
+  }
+}
+%btn_base-txt {
+  font-family: $CormorantFont;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 314.16px;
+  }
+}
+.btn {
+  @extend %btn_base;
+  //position: relative;
+  //border: 1px solid $primary;
+  //border-radius: unset;
+  //background: $primary;
+  //color: $white;
+
+  &.readMore {
+    @extend .txt-btn;
+    border: none;
+    background: transparent;
+    color: $primary;
+    padding-left: 0;
+    padding-right: 69px;
+    padding-bottom: 4px;
+    &:hover {
+      svg {
+        stroke-dashoffset: 0px;
+        opacity: 0;
+        transition: stroke-dashoffset 0s,
+          stroke-dashoffset 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      }
+    }
+
+    .circle-wrapper {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: inline-block;
+      svg {
+        fill: none;
+        stroke: $primary;
+        stroke-width: 1px;
+        //stroke-miterlimit: 10;
+        stroke-dasharray: 314.16px;
+        stroke-dashoffset: 314.16px;
+        //stroke-linecap: round;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        opacity: 1;
+        transform: translate(-50%, -50%);
+        transition: stroke-dashoffset 0s 0.2s, stroke-dashoffset 0.2s;
+      }
+    }
+    circle {
+      --circle-len: 314.16px;
+      width: 44px;
+      height: 44px;
+      fill: none;
+      stroke: $primary;
+      stroke-width: 1px;
+      stroke-dasharray: var(--circle-len);
+      stroke-dashoffset: 0px;
+      //animation: draw 2s linear infinite;
+      transform: rotate(180deg);
+      transform-origin: center;
+      animation-direction: reverse;
+      animation-delay: unset;
+    }
+    .arrow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      width: 157px;
+      background: $primary;
+      &::before,
+      &::after {
+        display: inline-block;
+        content: "";
+        position: absolute;
+        height: 1px;
+        width: 6px;
+        background: $primary;
+        border-radius: 2px;
+      }
+      &::before {
+        transform: rotate(45deg);
+        top: -2px;
+        right: -1px;
+      }
+      &::after {
+        transform: rotate(-45deg);
+        top: 2px;
+        right: -1px;
+      }
+    }
+  }
+
+  &.socialLogin {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 1px solid $primary;
+    background: $white;
+    margin: 0 8px;
+  }
+
+  &.submitBtn {
+    background: $primary;
+    width: 100%;
+  }
+}

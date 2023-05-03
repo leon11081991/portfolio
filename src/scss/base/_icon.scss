@@ -1,0 +1,16 @@
+.icon {
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin: 3px;
+  padding: 5px;
+}
+.icon-bc {
+  display: block;
+  width: 16px;
+  height: 16px;
+
+  path {
+    fill: $primary;
+  }
+}
