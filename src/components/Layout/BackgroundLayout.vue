@@ -1,28 +1,8 @@
 <template>
-  <div class="bg">
+  <div class="bg" :class="$route.name == 'Login' ? 'login' : ''">
     <div class="layout" v-for="(item, index) in 4" :key="index"></div>
   </div>
 </template>
-<script setup>
-import { useStore } from "vuex";
-import { ref, onMounted, computed } from "vue";
-
-const store = useStore();
-
-const layoutLeft = computed(() => store.state.layoutLeft);
-const layoutRight = computed(() => store.state.layoutRight);
-
-// 偵測視窗寬度
-const checkScreen = () => {
-  store.dispatch("checkScreen");
-};
-checkScreen(); // 初始偵測當前視窗寬度
-window.addEventListener("resize", checkScreen); // 偵測當前視窗寬度
-
-onMounted(() => {
-  // console.log(1);
-});
-</script>
 
 <style lang="scss" scoped>
 .bg {
@@ -35,7 +15,10 @@ onMounted(() => {
   z-index: $bg_zIndex;
   padding-right: $aside_w-desktop * 1px;
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: repeat(4, 1fr);
+  &.login {
+    padding-right: 0;
+  }
 }
 
 .layout {
