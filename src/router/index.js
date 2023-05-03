@@ -1,11 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { store } from "../store/index";
 
-import Home from "@pages/Home.vue";
-import About from "@pages/About.vue";
-import Articles from "@pages/Articles.vue";
-import NewPost from "@pages/NewPost.vue";
-import Login from "@pages/Login.vue";
+import Home from "@views/Home.vue";
+import About from "@views/About.vue";
+import Projects from "@views/Projects.vue";
+import Articles from "@views/Articles.vue";
+import NewPost from "@views/NewPost.vue";
+import Login from "@views/Login.vue";
+import Profile from "@views/Profile.vue";
+import Admin from "@views/Admin.vue";
+import NotFoundPage from "@views/NotFoundPage.vue";
 
 const routes = [
   {
@@ -25,11 +29,43 @@ const routes = [
     },
   },
   {
+    path: "/projects",
+    name: "Projects",
+    component: Projects,
+    meta: {
+      title: "Projects",
+    },
+  },
+  {
     path: "/articles",
     name: "Articles",
     component: Articles,
     meta: {
       title: "Articles",
+    },
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    meta: {
+      title: "Login",
+    },
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile,
+    meta: {
+      title: "Profile",
+    },
+  },
+  {
+    path: "/admin",
+    name: "Admin",
+    component: Admin,
+    meta: {
+      title: "Admin",
     },
   },
   {
@@ -41,11 +77,10 @@ const routes = [
     },
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login,
+    path: "/:pathMatch(.*)*",
+    component: NotFoundPage,
     meta: {
-      title: "Login",
+      title: "Not Found",
     },
   },
 ];
