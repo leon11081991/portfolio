@@ -1,26 +1,15 @@
 <template>
   <main class="web_main">
-    <Header />
-    <Aside />
+    <WebHeader />
+    <WebAside />
     <slot></slot>
-    <Footer />
+    <WebFooter />
   </main>
 </template>
 
 <script setup>
-// import
-import { ref, onMounted } from "vue";
-import { useStore } from "vuex";
-import Header from "@components/Header/Header.vue";
-import Aside from "@components/Aside/Aside.vue";
-import Footer from "@components/Footer/Footer.vue";
-
-// data
-const store = useStore();
+// IMPORT COMPONENT
+import WebHeader from "@components/Header/WebHeader.vue";
+import WebAside from "@components/Aside/WebAside.vue";
+import WebFooter from "@components/Footer/WebFooter.vue";
 </script>
-
-<style lang="scss" scoped>
-.web_main {
-  position: relative;
-}
-</style>
