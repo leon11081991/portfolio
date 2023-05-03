@@ -19,7 +19,7 @@ export const header = {
         },
         {
           name: "PROJECTS",
-          path: "/about#projects",
+          path: "/projects",
         },
         {
           name: "ARTICLES",
