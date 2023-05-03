@@ -2,11 +2,15 @@ import { createStore } from "vuex";
 
 import { header } from "./header";
 import { aside } from "./aside";
+import { footer } from "./footer";
+import { user } from "./user";
 
 export const store = createStore({
   modules: {
     header,
     aside,
+    footer,
+    user,
   },
   state() {
     return {
@@ -38,7 +42,7 @@ export const store = createStore({
   mutations: {},
   actions: {
     // 偵測視窗寬度
-    checkScreen({ state, commit }) {
+    checkScreen({ state }) {
       state.windowWidth = window.innerWidth;
 
       // 視窗小於768,啟用手機設定
