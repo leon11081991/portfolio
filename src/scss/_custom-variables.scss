@@ -1,33 +1,91 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+*/
+
 // Color
-//$primary: #393939;
-// $primary: #0a192f;
-$primary: #64ffda;
-$secondary: #0a192f;
-// $secondary: #9ba1b1;
-$secondary2: #112240;
-$secondary3: #020c1b;
-$secondary4: #8892b0;
-$third: #0a192f;
-$white: #e0e0e0;
-$focus: #ccd6f6;
+$primary: #0000b8;
+$secondary01: #040479;
+$secondary02: #eceffc;
+$gray01: #1a1a1a;
+$gray02: #5c5c5c;
+$gray03: #8f8f8f;
+$gray04: #dbdbdb;
+$gray05: #dbdbdb;
+$black: #000000;
+$white: #ffffff;
+$alert: #cb4042;
+
+// Text
+$base-font-size: 16;
+$txt-size: (
+  "h1": 56,
+  "h2": 30,
+  "h3": 24,
+  "h4": 18,
+  "h5": 14,
+  "p": 16,
+  "s": 14,
+);
+
+// Font
+$NotoSansTC: "Noto Sans TC", sans-serif;
+$NotoSerifTC: "Noto Serif TC", serif;
+@import url("https://fonts.cdnfonts.com/css/arial-2");
+$Arial: Arial, Helvetica, sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
+$CormorantFont: "Cormorant Garamond", serif;
 
 // Body
 //$body-bg: #1e2127;
-$body-bg: $secondary;
-//$body-color: #9ba1b1;
-$body-color: #8892b0;
+$body-bg: $white;
+$body-color: $primary;
 // $body-text-align: null !default;
 
 // Grid breakpoints
+$grid-breakpoints: (
+  xxs: 0,
+  xs: 375px,
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  xxl: 1366px,
+);
+$container-max-widths: (
+  xs: 91.4%,
+  md: 89.5%,
+  xl: 1288px,
+);
 
 // Grid columns
+$grid-columns: 12;
+$grid-gutter-width: 24px;
+$grid-row-columns: 6;
 
 // Components
-$border-color: #5b5e65;
+$btn-padding-y: 12px;
+$btn-padding-x: 32px;
+$input_w: 494px;
+// Components - Post
+$post-card-img_h: 229.5;
+$post-card-img_w: 408;
 
+// Layout
+$header_h-desktop: 90;
+$header_h-pad: 90;
+$aside_w-desktop: 88;
+$aside_w-pad: 88;
+$footer_h-desktop: 90;
+$footer_h-pad: 90;
+
+$bg_zIndex: 100;
+$menu_zIndex: 150;
+$header_zIndex: 99;
+$aside_zIndex: 98;
+$footer_zIndex: 97;
+$login_zIndex: 101;
 // Typography
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;700;800;900&display=swap");
-$FiraSans: "Fira Sans", sans-serif;
 
 // Easing
 // Reference form: https://easings.net

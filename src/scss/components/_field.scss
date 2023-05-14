@@ -30,8 +30,20 @@
       width: 100%;
       border: none;
       &:focus {
-        border: none;
+        //border: none;
+        outline: none;
       }
     }
+  }
+}
+
+.create-field {
+  margin-bottom: 1.5rem;
+
+  &-input {
+    @extend .profile-field-input;
+    border-color: $gray02;
+    max-width: initial;
+    width: 100%;
   }
 }

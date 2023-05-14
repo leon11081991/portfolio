@@ -1,0 +1,17 @@
+.editor {
+  position: relative;
+  margin: 0.5rem 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+
+  .ql-toolbar,
+  .ql-container {
+    position: relative;
+  }
+
+  .ql-container {
+    height: 100%;
+    overflow-y: scroll;
+  }
+}

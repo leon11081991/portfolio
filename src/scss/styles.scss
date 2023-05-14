@@ -22,7 +22,7 @@
 
 @import "@bootstrap/scss/utilities/api";
 
-@import "@bootstrap/scss/bootstrap";
+//@import "@bootstrap/scss/bootstrap";
 
 // Additional custom code here
 @import "_global.scss";
@@ -39,6 +39,6 @@
 // Customized Component
 @import "./components/field";
 @import "./components/breadcrumb";
-@import "./components/section";
 @import "./components/page-section";
 @import "./components/page-heading";
+@import "./components/editor";

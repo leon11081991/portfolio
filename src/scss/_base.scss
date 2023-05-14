@@ -3,6 +3,10 @@ body {
   background-color: $body-bg;
 }
 
+.web_main {
+  position: relative;
+}
+
 .web_wrapper {
   position: relative;
   padding-top: $header_h-desktop * 1px;
@@ -30,16 +34,14 @@ body {
   }
 }
 
+.mainContent {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  min-height: calc(100vh - $header_h-desktop * 1px - $footer_h-desktop * 1px);
+}
+
 .webgl {
   position: fixed;
   top: 0;
   left: 0;
-}
-
-.icon {
-  display: block;
-  width: 25px;
-  height: 25px;
-  margin: 3px;
-  padding: 5px;
 }

@@ -3,13 +3,13 @@
   padding: $btn-padding-y $btn-padding-x;
   display: inline-block;
   text-decoration: none;
-  border-radius: unset;
+  border-radius: 2px;
   background: $primary;
   color: $white;
   transition: all 0.5s ease-in-out;
   //cursor: pointer;
   &:hover {
-    background: $secondary02;
+    background: $secondary01;
     color: $white;
   }
 }
@@ -32,11 +32,28 @@
 }
 .btn {
   @extend %btn_base;
-  //position: relative;
-  //border: 1px solid $primary;
-  //border-radius: unset;
-  //background: $primary;
-  //color: $white;
+
+  &.style-contrast {
+    @extend %btn_base;
+    border: 1px solid $primary;
+    background: transparent;
+    color: $primary;
+    &:hover {
+      background: $primary;
+      color: $white;
+    }
+  }
+
+  &.inactive {
+    background: $gray04;
+    color: $white;
+    cursor: not-allowed;
+    border: none;
+    &:hover {
+      background: $gray04;
+      color: $white;
+    }
+  }
 
   &.readMore {
     @extend .txt-btn;
