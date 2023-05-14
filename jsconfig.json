@@ -4,7 +4,7 @@
       "@/*": ["./src/*"],
       "@/bootstrap/*": ["./node_modules/bootstrap/*"],
       "@assets/*": ["./src/assets/*"],
-      "@pages/*": ["./src/pages/*"],
+      "@views/*": ["./src/views/*"],
       "@components/*": ["./src/components/*"],
       "@store/*": ["./src/store/*"],
       "@utils/*": ["./src/utils/*"]
