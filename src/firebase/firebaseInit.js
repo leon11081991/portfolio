@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getFunctions } from "firebase/functions";
 import { serverTimestamp } from "firebase/firestore/lite";
 
 // Your web app's Firebase configuration
@@ -23,8 +24,10 @@ const auth = getAuth();
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(firebaseApp);
+// Initialize an instance of Cloud Functions
+const functions = getFunctions(firebaseApp);
 
 // Timestamp
 const timestamp = serverTimestamp();
 
-export { auth, db, timestamp };
+export { auth, db, timestamp, functions };
