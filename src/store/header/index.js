@@ -10,20 +10,16 @@ export const header = {
       ],
       navigationList: [
         {
-          name: "HOME",
-          path: "/",
+          name: "Home",
         },
         {
-          name: "ABOUT",
-          path: "/about",
+          name: "About",
         },
         {
-          name: "PROJECTS",
-          path: "/projects",
+          name: "Projects",
         },
         {
-          name: "ARTICLES",
-          path: "/articles",
+          name: "Article",
         },
       ],
     };
@@ -34,11 +30,12 @@ export const header = {
     toggleMenu({ state }) {
       state.menu = !state.menu;
       state.menuBar = true;
-      console.log("menuActive", state.menu);
+      //console.log("menuActive", state.menu);
+
       // 1秒後移除
-      setTimeout(() => {
-        state.menuBar = false;
-      }, 1000);
+      //setTimeout(() => {
+      //  state.menuBar = false;
+      //}, 1000);
     },
   },
 };
