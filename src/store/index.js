@@ -4,6 +4,8 @@ import { header } from "./header";
 import { aside } from "./aside";
 import { footer } from "./footer";
 import { user } from "./user";
+import { post } from "./post";
+import { project } from "./project";
 
 export const store = createStore({
   modules: {
@@ -11,29 +13,31 @@ export const store = createStore({
     aside,
     footer,
     user,
+    post,
+    project,
   },
   state() {
     return {
+      loading: true,
       mobile: null,
+      mobileBackground: null,
       windowWidth: null,
-      sampleArticles: [
+      socialList: [
         {
-          articleTitle: "article #1",
-          articleContent:
-            "一个组件需要显式声明它所接受的 props，这样 Vue 才能知道外部传入的哪些是 props，哪些是透传 attribute (关于透传 attribonal digital experiences. Currently, I’m focused on building accessible, human-cenute，我们会在专门的章节中讨论)。",
-          articleDate: "May 1 ,2023",
+          name: "github",
+          link: "https://github.com/leon11081991",
         },
         {
-          articleTitle: "article #2",
-          articleContent:
-            "一个组件需要显式声明它所接受的 props，这样 Vue 才能知道外部传入的哪些是 props，哪些是透传 attribute (关于透传 attrrvreibute，我们会在专门的章节中讨论)。",
-          articleDate: "May 2 ,2023",
+          name: "linkin",
+          link: "https://www.linkedin.com/in/yi-ting-chou-78653a270/",
         },
         {
-          articleTitle: "article #3",
-          articleContent:
-            "一个组件需要显式声明它所接受的 props，这样 Vue 才能知道外部传入的哪些是 props，哪些是透传 attribute (关于透传 attribute，我们会在专门的章节中讨论)。",
-          articleDate: "May 3 ,2023",
+          name: "notion",
+          link: "https://www.linkedin.com/in/yi-ting-chou-78653a270/",
+        },
+        {
+          name: "codepen",
+          link: "https://www.linkedin.com/in/yi-ting-chou-78653a270/",
         },
       ],
     };
@@ -45,15 +49,23 @@ export const store = createStore({
     checkScreen({ state }) {
       state.windowWidth = window.innerWidth;
 
-      // 視窗小於768,啟用手機設定
-      if (state.windowWidth <= 768) {
+      // 根據視窗大小,啟用手機設定或桌機設定
+      if (state.windowWidth < 576) {
         state.mobile = true;
-        console.log("Mobile / " + state.windowWidth + "px");
+        state.mobileBackground = true;
+        //console.log("mobileBackground / " + state.mobileBackground);
+        return;
+      } else if (state.windowWidth < 768) {
+        state.mobile = true;
+        state.mobileBackground = false;
+        //console.log("Mobile / " + state.windowWidth + "px");
+        return;
+      } else {
+        state.mobile = false;
+        state.mobileBackground = false;
+        //console.log("Desktop / " + state.windowWidth + "px");
         return;
       }
-      state.mobile = false;
-      console.log("Desktop / " + state.windowWidth + "px");
-      return;
     },
   },
 });
