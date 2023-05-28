@@ -1,27 +1,20 @@
 export const aside = {
   state() {
     return {
-      socialMedia: [
-        {
-          name: "github",
-          link: "https://github.com/leon11081991",
-        },
-        {
-          name: "linkin",
-          link: "https://www.linkedin.com/in/yi-ting-chou-78653a270/",
-        },
-        {
-          name: "notion",
-          link: "https://www.linkedin.com/in/yi-ting-chou-78653a270/",
-        },
-        {
-          name: "codepen",
-          link: "https://www.linkedin.com/in/yi-ting-chou-78653a270/",
-        },
-      ],
+      profileMenu: null,
     };
   },
   mutations: {},
   getters: {},
-  actions: {},
+  actions: {
+    toggleProfileMenu({ state }) {
+      state.profileMenu = !state.profileMenu;
+    },
+    profileMenuOpen({ state }) {
+      state.profileMenu = true;
+    },
+    profileMenuClose({ state }) {
+      state.profileMenu = false;
+    },
+  },
 };
