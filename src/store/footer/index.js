@@ -13,12 +13,12 @@ export const footer = {
           target: "",
         },
         {
-          title: "Resume Here",
+          title: "Resume",
           link: "#",
           target: "_blank",
         },
         {
-          title: "Designer - Lillian Lin",
+          title: "Design by Lillian",
           link: "https://material-hellebore-043.notion.site/e99a7269f5b94db38d55ec6266730065?v=5e9bc2de5bc24512873883ac3f6f43f7",
           target: "_blank",
         },
