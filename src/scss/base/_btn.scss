@@ -4,6 +4,7 @@
   display: inline-block;
   text-decoration: none;
   border-radius: 2px;
+  border: 1px solid $primary;
   background: $primary;
   color: $white;
   transition: all 0.5s ease-in-out;
@@ -23,11 +24,16 @@
 }
 
 @keyframes draw {
-  from {
-    stroke-dashoffset: 0px;
-  }
   to {
     stroke-dashoffset: 314.16px;
+  }
+}
+@keyframes draw-back {
+  from {
+    stroke-dashoffset: 314.16px;
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }
 .btn {
@@ -56,57 +62,44 @@
   }
 
   &.readMore {
+    position: relative;
     @extend .txt-btn;
     border: none;
     background: transparent;
     color: $primary;
-    padding-left: 0;
-    padding-right: 69px;
-    padding-bottom: 4px;
+    padding: 4px 69px 4px 0px;
     &:hover {
       svg {
-        stroke-dashoffset: 0px;
-        opacity: 0;
-        transition: stroke-dashoffset 0s,
-          stroke-dashoffset 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        circle {
+          animation: draw 1.3s;
+          animation-fill-mode: forwards;
+        }
       }
     }
 
     .circle-wrapper {
       position: absolute;
       bottom: 0;
-      right: 0;
+      right: -22px;
+      transform: translateY(50%);
       display: inline-block;
       svg {
-        fill: none;
-        stroke: $primary;
-        stroke-width: 1px;
-        //stroke-miterlimit: 10;
-        stroke-dasharray: 314.16px;
-        stroke-dashoffset: 314.16px;
-        //stroke-linecap: round;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        opacity: 1;
-        transform: translate(-50%, -50%);
-        transition: stroke-dashoffset 0s 0.2s, stroke-dashoffset 0.2s;
+        height: fit-content;
+        width: fit-content;
+        circle {
+          --circle-len: 314.16px;
+          fill: none;
+          stroke: $primary;
+          stroke-width: 1px;
+          stroke-dasharray: var(--circle-len);
+          stroke-dashoffset: 0;
+          transform: scaleX(-1);
+          transform-origin: center;
+          // animation: draw-back 1.5s;
+          animation-delay: 0s;
+          // animation-fill-mode: backwards;
+        }
       }
-    }
-    circle {
-      --circle-len: 314.16px;
-      width: 44px;
-      height: 44px;
-      fill: none;
-      stroke: $primary;
-      stroke-width: 1px;
-      stroke-dasharray: var(--circle-len);
-      stroke-dashoffset: 0px;
-      //animation: draw 2s linear infinite;
-      transform: rotate(180deg);
-      transform-origin: center;
-      animation-direction: reverse;
-      animation-delay: unset;
     }
     .arrow {
       position: absolute;
