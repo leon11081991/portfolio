@@ -9,5 +9,8 @@
       "@store/*": ["./src/store/*"],
       "@utils/*": ["./src/utils/*"]
     }
+  },
+  "vueCompilerOptions": {
+    "optionsWrapper": [false]
   }
 }
