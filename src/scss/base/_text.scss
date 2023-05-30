@@ -12,7 +12,7 @@
 // >> 0.0- base
 %base-text-style {
   font-size: $base-font-size * 1px;
-  font-family: $Arial;
+  font-family: Arial, $NotoSansTC;
   font-weight: 400;
   line-height: 1.75;
   letter-spacing: 1px;
@@ -47,7 +47,7 @@
 // >> 3.0- text level
 .txt-headline1 {
   @extend .txt-h1;
-  font-family: $Arial;
+  font-family: Arial, $NotoSansTC;
   font-weight: 400;
   line-height: 1.2;
   letter-spacing: 1px;
@@ -60,7 +60,7 @@
 
 .txt-headline2 {
   @extend .txt-h2;
-  font-family: $Arial;
+  font-family: Arial, $NotoSansTC;
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: 1px;
@@ -73,7 +73,7 @@
 
 .txt-headline3 {
   @extend .txt-h3;
-  font-family: $Arial;
+  font-family: Arial, $NotoSansTC;
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 1px;
@@ -100,6 +100,7 @@
 
 .txt-headline5 {
   @extend .txt-h5;
+  font-family: Arial, $NotoSansTC;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 1px;
@@ -110,8 +111,8 @@
 }
 
 .txt-p {
-  font-size: 16px;
-  font-family: $Arial;
+  font-size: 14px;
+  font-family: Arial, $NotoSansTC;
   font-weight: 400;
   line-height: 1.75;
   letter-spacing: 1px;
@@ -123,8 +124,8 @@
 }
 
 .txt-s {
-  font-size: 14px;
-  font-family: $Arial;
+  font-size: 12px;
+  font-family: Arial, $NotoSansTC;
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0.5px;
@@ -136,7 +137,7 @@
 }
 
 .txt-btn {
-  font-family: $Arial;
+  font-family: Arial, $NotoSansTC;
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
