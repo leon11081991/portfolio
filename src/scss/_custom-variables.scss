@@ -11,7 +11,7 @@ $gray01: #1a1a1a;
 $gray02: #5c5c5c;
 $gray03: #8f8f8f;
 $gray04: #dbdbdb;
-$gray05: #dbdbdb;
+$gray05: #f5f5f5;
 $black: #000000;
 $white: #ffffff;
 $alert: #cb4042;
@@ -19,19 +19,19 @@ $alert: #cb4042;
 // Text
 $base-font-size: 16;
 $txt-size: (
-  "h1": 56,
+  "h1": 46,
   "h2": 30,
-  "h3": 24,
+  "h3": 20,
   "h4": 18,
   "h5": 14,
-  "p": 16,
-  "s": 14,
+  "p": 14,
+  "s": 12,
 );
 
 // Font
 $NotoSansTC: "Noto Sans TC", sans-serif;
 $NotoSerifTC: "Noto Serif TC", serif;
-@import url("https://fonts.cdnfonts.com/css/arial-2");
+@import url("https://fonts.cdnfonts.com/css/arial");
 $Arial: Arial, Helvetica, sans-serif;
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
 $CormorantFont: "Cormorant Garamond", serif;
@@ -48,9 +48,12 @@ $grid-breakpoints: (
   xs: 375px,
   sm: 576px,
   md: 768px,
-  lg: 1024px,
-  xl: 1280px,
-  xxl: 1366px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  // lg: 1024px,
+  // xl: 1280px,
+  // xxl: 1366px,,,,
 );
 $container-max-widths: (
   xs: 91.4%,
@@ -81,6 +84,7 @@ $footer_h-pad: 90;
 
 $bg_zIndex: 100;
 $menu_zIndex: 150;
+$webNav_zIndex: 101;
 $header_zIndex: 99;
 $aside_zIndex: 98;
 $footer_zIndex: 97;
