@@ -20,7 +20,7 @@
 @import "@bootstrap/scss/grid";
 @import "@bootstrap/scss/helpers";
 
-@import "@bootstrap/scss/utilities/api";
+//@import "@bootstrap/scss/utilities/api";
 
 //@import "@bootstrap/scss/bootstrap";
 
@@ -31,14 +31,11 @@
 // Customized Base
 @import "./base/atag";
 @import "./base/btn";
-@import "./base/icon";
 @import "./base/img_div";
 @import "./base/keyframes";
 @import "./base/text";
 
 // Customized Component
 @import "./components/field";
-@import "./components/breadcrumb";
 @import "./components/page-section";
-@import "./components/page-heading";
 @import "./components/editor";
