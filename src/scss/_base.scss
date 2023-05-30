@@ -17,6 +17,23 @@ body {
     padding-right: $aside_w-pad * 1px;
     padding-bottom: $footer_h-pad * 1px;
   }
+  @include media-breakpoint-down(md) {
+    padding-top: $header_h-pad * 1px;
+    padding-right: initial;
+    padding-bottom: $footer_h-pad * 1px;
+  }
+  &.login {
+    padding-top: initial;
+    padding-right: initial;
+    padding-bottom: initial;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    @include media-breakpoint-down(lg) {
+      padding-top: $header_h-pad * 1px;
+      padding-bottom: $footer_h-pad * 1px;
+    }
+  }
 }
 
 // Custom container
