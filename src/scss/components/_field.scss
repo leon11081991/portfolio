@@ -1,9 +1,12 @@
 .profile-field {
-  &:not(:last-child) {
-    margin-bottom: 2rem;
-  }
+  position: relative;
+  // &:not(:last-child) {
+  //   margin-bottom: 2rem;
+  // }
   &-title {
-    @extend %base-text-style;
+    width: 100%;
+    text-align: left;
+    @extend .txt-p;
     color: $gray02;
     margin-bottom: 0.5rem;
   }
@@ -12,7 +15,7 @@
     background: $white;
     border: 1px solid $primary;
     max-width: $input_w;
-    width: $input_w;
+    width: 100%;
     &.disabled {
       background: $gray05;
       cursor: not-allowed;
@@ -20,6 +23,10 @@
       input {
         pointer-events: none;
       }
+    }
+    span {
+      @extend .txt-s;
+      color: $gray03;
     }
 
     input {
