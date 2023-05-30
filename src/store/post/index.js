@@ -71,7 +71,8 @@ export const post = {
           const postData = {
             postID: doc.data().postID,
             postHTML: doc.data().postHTML,
-            postCoverPhoto: doc.data().postCoverPhoto,
+            postCoverFileURL: doc.data().postCoverPhoto,
+            postCoverName: doc.data().postCoverPhotoName,
             postTitle: doc.data().postTitle,
             postDate: doc.data().date,
             postWriterID: doc.data().profileId,
@@ -79,6 +80,7 @@ export const post = {
           };
           state.postPosts.push(postData);
         }
+        console.log("state.postPosts", state.postPosts);
       });
       commit("postsLoadedStatus", true);
       //console.log("getPosts", state.postPosts);
