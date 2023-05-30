@@ -16,10 +16,6 @@
         <div class="profileInitial">
           <Icon name="user" />
         </div>
-        <!-- <ProfileMenu
-          v-if="profileMenu"
-          @clickSignOut="handleSignOut"
-        ></ProfileMenu> -->
         <transition name="fade">
           <ProfileMenu v-if="profileMenu" @clickSignOut="handleSignOut" />
         </transition>
