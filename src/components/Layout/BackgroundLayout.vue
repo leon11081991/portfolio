@@ -1,8 +1,22 @@
 <template>
   <div class="bg" :class="$route.name == 'Login' ? 'login' : ''">
-    <div class="layout" v-for="(item, index) in 4" :key="index"></div>
+    <!-- <div class="layout" v-if="mobile" v-for="(item, index) in 2"></div> -->
+    <div class="layout" v-show="!mobileBackground"></div>
+    <div class="layout" v-show="!mobileBackground"></div>
+    <div class="layout"></div>
+    <div class="layout"></div>
+    <!-- <div class="layout" v-else v-for="(item, index) in 4"></div> -->
   </div>
 </template>
+
+<script setup>
+import { computed } from "vue";
+import { useStore } from "vuex";
+const store = useStore();
+
+const mobileBackground = computed(() => store.state.mobileBackground);
+const mobile = computed(() => store.state.mobile);
+</script>
 
 <style lang="scss" scoped>
 .bg {
@@ -12,10 +26,16 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: $bg_zIndex;
+  //z-index: $bg_zIndex;
   padding-right: $aside_w-desktop * 1px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  @include media-breakpoint-down(md) {
+    padding-right: unset;
+  }
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
   &.login {
     padding-right: 0;
   }
