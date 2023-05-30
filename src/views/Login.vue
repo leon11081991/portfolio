@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div class="container" :class="$route.name === 'Login' ? 'login' : ''">
+    <Logo class="login"></Logo>
     <div class="registrationLoginModal">
       <LoginModal
         @loginModalSubmit="loginModalSubmit"
@@ -8,12 +9,17 @@
     </div>
   </div>
 </template>
+
 <script setup>
-// IMPORT
+// IMPORT NECESSARY
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { router } from "@/router/index";
+// VARIABLE NECESSARY
+
 // IMPORT COMPONENT
+import Logo from "@components/Base/Logo.vue";
 import LoginModal from "@components/Modal/LoginModal.vue";
+
 // IMPORT FIREBASE
 import {
   createUserWithEmailAndPassword,
@@ -23,10 +29,10 @@ import { setDoc, doc } from "firebase/firestore";
 import { db, auth } from "@/firebase/firebaseInit";
 
 // DATA
-const router = useRouter();
 const modalType = ref("login");
 
-// METHOD
+// METHODS
+// (1)
 const loginModalSubmit = async (data) => {
   // 登入
   if (data.modalType == "login") {
@@ -35,15 +41,20 @@ const loginModalSubmit = async (data) => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         // Signed in
+        console.log("Signed in");
         const user = userCredential.user;
         console.log(user);
         // 跳轉回首頁
-        router.push({ name: "Home" });
+        router.replace({ name: "Home" });
       })
       .catch((error) => {
         console.log("Login error.");
         const errorCode = error.code;
         const errorMessage = error.message;
+
+        if (errorCode == "auth/wrong-password") {
+          console.log("密碼錯誤");
+        }
         console.log(errorCode);
         console.log(errorMessage);
       });
@@ -51,7 +62,7 @@ const loginModalSubmit = async (data) => {
 
   // 註冊
   if (data.modalType == "register") {
-    console.log("register data", data);
+    //console.log("register data", data);
     try {
       // 建立使用者
       await createUserWithEmailAndPassword(auth, data.email, data.password);
@@ -63,7 +74,7 @@ const loginModalSubmit = async (data) => {
         email: data.email,
         password: data.password,
       });
-
+      console.log("Register success");
       // 跳轉回首頁
       router.push({ name: "Home" });
     } catch (error) {
@@ -76,13 +87,19 @@ const loginModalSubmit = async (data) => {
   }
 };
 </script>
+
 <style lang="scss" scoped>
+.login {
+  &.container {
+    z-index: $login_zIndex;
+  }
+}
 .registrationLoginModal {
   position: relative;
   padding: 56px;
   border: 1px solid $primary;
   background: $white;
-  z-index: $login_zIndex;
+
   max-width: 474px;
   margin-left: auto;
   margin-right: auto;
@@ -94,8 +111,8 @@ const loginModalSubmit = async (data) => {
     right: -25px;
     width: 100%;
     height: 100%;
-    //background: $primary;
     z-index: -1;
+    background-color: $primary;
   }
 }
 </style>
