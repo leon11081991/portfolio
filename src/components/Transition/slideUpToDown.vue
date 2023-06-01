@@ -1,5 +1,5 @@
 <template>
-  <Transition name="slideDownToDown">
+  <Transition name="slideUpToDown">
     <slot></slot>
   </Transition>
 </template>
@@ -19,26 +19,26 @@ export default {
 </script>
 
 <style lang="scss">
-.slideDownToDown {
+.slideUpToDown {
   &-enter-active,
   &-leave-active {
-    transition: all 0.7s;
+    transition: all 0.5s;
     transition-timing-function: $easeInOutQuart;
   }
   &-enter {
     &-from {
-      transform: translateY(-100%);
+      transform: translateX(100%);
     }
     &-to {
-      transform: translateY(0);
+      transform: translateX(0);
     }
   }
   &-leave {
     &-from {
-      transform: translateY(0);
+      transform: translateX(0);
     }
     &-to {
-      transform: translateY(100%);
+      transform: translateX(100%);
     }
   }
 }
