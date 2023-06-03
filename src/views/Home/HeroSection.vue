@@ -5,10 +5,18 @@
       <template v-if="section.name == 'hero'">
         <div class="section-content">
           <Comma class="comma" />
-          <span class="intro">{{ section.intro }}</span>
-          <h2 class="title">{{ section.title }}</h2>
-          <p class="subtitle">{{ section.subTitle }}</p>
-          <p class="desc">{{ section.desc }}</p>
+          <div>
+            <span class="intro moveIn">{{ section.intro }}</span>
+          </div>
+          <div>
+            <h2 class="title moveIn">{{ section.title }}</h2>
+          </div>
+          <!-- <div>
+            <p class="subtitle moveIn">{{ section.subTitle }}</p>
+          </div> -->
+          <div>
+            <p class="desc moveIn">{{ section.desc }}</p>
+          </div>
           <router-link to="#" class="btn readMore">
             Read More
             <span class="arrow"></span>
@@ -129,23 +137,59 @@ $hero_img-h: 437;
       }
     }
     .intro {
+      position: relative;
       display: block;
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
       @extend .txt-headline3;
     }
     .title {
+      position: relative;
       @extend .txt-headline1;
       //font-size: clamp(40px, 10vw, 100px);
       text-transform: uppercase;
-      //color: $primary;
     }
     .desc {
+      position: relative;
       @extend %base-text-style;
       margin-top: 16px;
       margin-bottom: 40px;
     }
-  }
-  &.about {
+    .moveIn {
+      color: transparent;
+      animation: textReveal 0.5s ease forwards;
+      animation-delay: 1.5s;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: $primary;
+        animation: textRevealBox 1s ease;
+        animation-delay: 1s;
+      }
+    }
+
+    .section-content > div:nth-child(2) .moveIn {
+      animation-delay: 1.5s;
+    }
+    .section-content > div:nth-child(3) .moveIn {
+      animation-delay: 2.5s;
+    }
+    .section-content > div:nth-child(4) .moveIn {
+      animation-delay: 3.5s;
+    }
+
+    .section-content > div:nth-child(2) .moveIn::after {
+      animation-delay: 1s;
+    }
+    .section-content > div:nth-child(3) .moveIn::after {
+      animation-delay: 2s;
+    }
+    .section-content > div:nth-child(4) .moveIn::after {
+      animation-delay: 3s;
+    }
   }
 }
 </style>
