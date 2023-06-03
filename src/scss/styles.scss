@@ -1,4 +1,3 @@
-@use "sass:math";
 @import "@bootstrap/scss/functions";
 
 // Default variable overrides here
@@ -22,8 +21,6 @@
 
 //@import "@bootstrap/scss/utilities/api";
 
-//@import "@bootstrap/scss/bootstrap";
-
 // Additional custom code here
 @import "_global.scss";
 @import "./base";
@@ -31,9 +28,9 @@
 // Customized Base
 @import "./base/atag";
 @import "./base/btn";
+@import "./base/text";
 @import "./base/img_div";
 @import "./base/keyframes";
-@import "./base/text";
 
 // Customized Component
 @import "./components/field";
