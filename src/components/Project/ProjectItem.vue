@@ -9,7 +9,7 @@
           <img :src="project.projectCover" :alt="project.projectTitle" />
         </div>
       </div>
-      <div class="project-title">{{ project.projectTitle }}</div>
+      <h3 class="project-title">{{ project.projectTitle }}</h3>
     </a>
   </li>
 </template>
@@ -28,9 +28,11 @@ import Icon from "@components/Base/Icon.vue";
     &-link {
       &:hover {
         .project-title {
-          &::before {
-            width: 100%;
-          }
+          background-size: 100% 1px;
+          transition: background-size 500ms ease-in-out;
+          //&::before {
+          //  width: 100%;
+          //}
         }
         .filter {
           opacity: 1;
@@ -40,6 +42,7 @@ import Icon from "@components/Base/Icon.vue";
   }
   &-img {
     position: relative;
+    margin-bottom: 1rem;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
     .filter {
       position: absolute;
@@ -70,22 +73,28 @@ import Icon from "@components/Base/Icon.vue";
   }
   &-title {
     position: relative;
-    display: inline-block;
-    margin-top: 1rem;
+    //display: inline-block;
+    display: inline;
+    //margin-top: 1rem;
     @extend .txt-headline3;
     line-height: 1.5;
     color: $primary;
-    &::before {
-      display: inline-block;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      content: "";
-      height: 1px;
-      width: 0%;
-      background: $primary;
-      transition: all 0.5s ease-in-out;
-    }
+    background-image: linear-gradient($primary, $primary);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: 0% 1px;
+    transition: background-size 500ms ease-in-out;
+    //&::before {
+    //  display: inline-block;
+    //  position: absolute;
+    //  bottom: 0;
+    //  left: 0;
+    //  content: "";
+    //  height: 1px;
+    //  width: 0%;
+    //  background: $primary;
+    //  transition: all 0.5s ease-in-out;
+    //}
   }
 }
 </style>
