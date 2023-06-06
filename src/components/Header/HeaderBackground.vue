@@ -13,6 +13,9 @@
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 3fr;
+  @include media-breakpoint-down(md) {
+    grid-template-columns: unset;
+  }
   .layout {
     position: relative;
     display: block;
