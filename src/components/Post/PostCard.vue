@@ -116,6 +116,7 @@ const editPost = () => {
 
     &-txt {
       display: inline;
+      //display: inline-block;
       @extend .txt-headline3;
       background-image: linear-gradient($primary, $primary);
       background-repeat: no-repeat;
