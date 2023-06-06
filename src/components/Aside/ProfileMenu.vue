@@ -50,16 +50,17 @@ const store = useStore();
 import Icon from "@components/Base/Icon.vue";
 
 const admin = computed(() => store.state.user.profileAdmin);
-console.log("admin", admin);
+//console.log("admin", admin);
 </script>
 
 <style lang="scss" scoped>
 .profile-menu {
-  position: absolute;
+  position: fixed;
   bottom: $footer_h-desktop * 1px;
   right: 0;
   background: $primary;
   color: $white;
+  z-index: $aside_zIndex + 1;
   &-inner {
     padding: 24px 40px;
   }
@@ -92,6 +93,10 @@ console.log("admin", admin);
       background: rgba($white, 0.3);
     }
   }
+  .options {
+    display: inline-flex;
+    flex-direction: column;
+  }
   .option {
     margin-top: 1rem;
 
@@ -102,6 +107,9 @@ console.log("admin", admin);
       display: flex;
       align-items: center;
       color: $white;
+      &:hover {
+        cursor: pointer;
+      }
     }
     .icon {
       fill: $white;
