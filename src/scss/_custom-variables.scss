@@ -53,7 +53,7 @@ $grid-breakpoints: (
   xxl: 1400px,
   // lg: 1024px,
   // xl: 1280px,
-  // xxl: 1366px,,,,
+  // xxl: 1366px,,,,,,,
 );
 $container-max-widths: (
   xs: 91.4%,
@@ -82,6 +82,7 @@ $aside_w-pad: 88;
 $footer_h-desktop: 90;
 $footer_h-pad: 90;
 
+$cursor_zIndex: 99999;
 $bg_zIndex: 100;
 $menu_zIndex: 150;
 $webNav_zIndex: 101;
