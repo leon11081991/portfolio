@@ -1,11 +1,9 @@
 <template>
   <div class="bg" :class="$route.name == 'Login' ? 'login' : ''">
-    <!-- <div class="layout" v-if="mobile" v-for="(item, index) in 2"></div> -->
     <div class="layout" v-show="!mobileBackground"></div>
     <div class="layout" v-show="!mobileBackground"></div>
     <div class="layout"></div>
     <div class="layout"></div>
-    <!-- <div class="layout" v-else v-for="(item, index) in 4"></div> -->
   </div>
 </template>
 
@@ -15,7 +13,6 @@ import { useStore } from "vuex";
 const store = useStore();
 
 const mobileBackground = computed(() => store.state.mobileBackground);
-const mobile = computed(() => store.state.mobile);
 </script>
 
 <style lang="scss" scoped>
