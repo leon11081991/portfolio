@@ -5,7 +5,6 @@
       <Logo></Logo>
       <Marquee v-if="!mobile" :marquees="marqueeTexts"></Marquee>
     </div>
-    <!-- Menu Start -->
     <div
       class="menu"
       :class="headerMenu ? 'active' : ''"
@@ -13,8 +12,7 @@
     >
       <span></span>
     </div>
-    <!-- Menu End -->
-    <Transition name="Menu">
+    <TransitionSlideDownToDown>
       <nav class="web_nav" v-if="headerMenu">
         <div class="web_nav__inner">
           <div class="web_nav-main">
@@ -34,8 +32,11 @@
               </li>
             </ul>
           </div>
+
+          <ProfileMenu />
+
           <div class="web_nav-subMain">
-            <SocialMedia class="headerMenu"></SocialMedia>
+            <SocialMedia class="headerMenu" />
             <div class="user-controller">
               <router-link
                 v-if="!userLogged"
@@ -53,13 +54,13 @@
           </div>
         </div>
       </nav>
-    </Transition>
+    </TransitionSlideDownToDown>
   </header>
 </template>
 
 <script setup>
 // IMPORT NECESSARY
-import { computed, Transition } from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 // VARIABLE NECESSARY
 const store = useStore();
@@ -70,6 +71,8 @@ import Marquee from "@components/Header/Marquee.vue";
 import SocialMedia from "@components/Base/SocialMedia.vue";
 import Icon from "@components/Base/Icon.vue";
 import Logo from "@components/Base/Logo.vue";
+import TransitionSlideDownToDown from "@components/Transition/slideDownToDown.vue";
+import ProfileMenu from "@components/Aside/ProfileMenu.vue";
 
 // DATA
 const marqueeTexts = computed(() => store.state.header.marqueeTexts);
@@ -154,6 +157,9 @@ const handleSignOut = () => {
   right: 0;
   z-index: $menu_zIndex;
   background-color: $primary;
+  &:hover {
+    cursor: pointer;
+  }
 
   span {
     display: block;
@@ -217,6 +223,7 @@ const handleSignOut = () => {
   height: 100vh;
   background-color: $primary;
   z-index: $webNav_zIndex;
+  overflow-y: scroll;
   &::before {
     content: "";
     position: absolute;
@@ -300,51 +307,21 @@ const handleSignOut = () => {
 
     .user-controller {
       &-link {
-        display: inline-block;
+        display: inline;
         position: relative;
         @extend .txt-headline4;
         color: $white;
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          height: 1px;
-          width: 0%;
-          background: $white;
-          transition: all 0.5s ease-in;
-        }
+        cursor: pointer;
+        background-image: linear-gradient($white, $white);
+        background-repeat: no-repeat;
+        background-position: bottom left;
+        background-size: 0% 1px;
+        transition: background-size 500ms ease-in-out;
         &:hover {
-          &::after {
-            width: 100%;
-            transition: all 0.5s ease-out;
-          }
+          background-size: 100% 1px;
+          transition: background-size 500ms ease-in-out;
         }
       }
-    }
-  }
-}
-// 點擊 Menu動畫
-.Menu {
-  &-enter-active,
-  &-leave-active {
-    transition: all 0.7s;
-    transition-timing-function: $easeInOutQuart;
-  }
-  &-enter {
-    &-from {
-      top: -100%;
-    }
-    &-to {
-      top: 0;
-    }
-  }
-  &-leave {
-    &-from {
-      top: 0;
-    }
-    &-to {
-      top: 100vh;
     }
   }
 }
