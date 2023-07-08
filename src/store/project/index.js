@@ -16,11 +16,15 @@ export const project = {
   actions: {
     async getProjects({ state, commit }) {
       commit("projectsLoadedStatus", false);
+
       const projectQuery = await query(
         collection(db, "projects"),
         orderBy("projectID", "asc")
       );
       const projectQueryResult = await getDocs(projectQuery);
+
+      state.projectList = [];
+
       projectQueryResult.forEach((doc) => {
         if (
           !state.projectList.some((project) => project.projectID === doc.id)
@@ -35,7 +39,6 @@ export const project = {
         }
       });
       commit("projectsLoadedStatus", true);
-      //console.log("projectList!!", state.projectList);
     },
   },
 };
