@@ -34,6 +34,10 @@ import Education from "@/components/Resume/Education.vue";
 export default {
   name: "Resume",
   components: { Header, Contacts, Profile, Skills, Experience, Education },
+  mounted() {
+    // 讀取頁面關閉
+    this.$store.state.loading = false;
+  },
 };
 </script>
 
