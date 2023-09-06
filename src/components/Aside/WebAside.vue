@@ -7,7 +7,7 @@
       </div>
 
       <div
-        @mouseover="handleMouseover"
+        @mouseenter="handleMouseEnter"
         @mouseleave="handleMouseLeave"
         class="profile"
         ref="profile"
@@ -16,9 +16,16 @@
         <div class="profileInitial">
           <Icon name="user" />
         </div>
-        <transition name="fade">
+
+        <ProfileMenu v-if="!mobile" @clickSignOut="handleSignOut" />
+        <!-- <TransitionSlideUpToDown
+          @onLeave="handleOnLeave"
+          @onAfterLeave="handleOnAfterLeave"
+          @mouseenter="handleMouseEnter"
+          @mouseleave="handleMouseLeave"
+        >
           <ProfileMenu v-if="profileMenu" @clickSignOut="handleSignOut" />
-        </transition>
+        </TransitionSlideUpToDown> -->
       </div>
     </div>
   </aside>
@@ -26,8 +33,9 @@
 
 <script setup>
 // IMPORT NECESSARY
-import { computed } from "vue";
+import { ref, computed } from "vue";
 import { useStore } from "vuex";
+
 // VARIABLE NECESSARY
 const store = useStore();
 
@@ -35,25 +43,31 @@ const store = useStore();
 import SocialMedia from "@components/Base/SocialMedia.vue";
 import ProfileMenu from "@components/Aside/ProfileMenu.vue";
 import Icon from "@components/Base/Icon.vue";
+import TransitionSlideUpToDown from "@components/Transition/slideUpToDown.vue";
 
 // DATA
+let ignoreHandleMouseEnter = ref(null);
 const profileMenu = computed(() => store.state.aside.profileMenu);
 const user = computed(() => store.state.user.user);
+const mobile = computed(() => store.state.mobile);
 
 // METHODS
-// (1) 切換個人資料選單
-const handleToggleProfileMenu = () => {
-  store.dispatch("toggleProfileMenu");
+// (1) 登出
+const handleSignOut = () => {
+  store.dispatch("signOutCurrentUser");
 };
-const handleMouseover = () => {
+const handleOnLeave = (el) => {
+  ignoreHandleMouseEnter.value = true;
+};
+const handleOnAfterLeave = (el) => {
+  ignoreHandleMouseEnter.value = false;
+};
+const handleMouseEnter = () => {
+  if (ignoreHandleMouseEnter.value) return;
   store.dispatch("profileMenuOpen");
 };
 const handleMouseLeave = () => {
   store.dispatch("profileMenuClose");
-};
-// (2) 登出
-const handleSignOut = () => {
-  store.dispatch("signOutCurrentUser");
 };
 </script>
 
@@ -99,6 +113,12 @@ const handleSignOut = () => {
   right: 0;
   width: $aside_w-desktop * 1px;
   height: $footer_h-desktop * 1px;
+
+  &:hover {
+    .profile-menu {
+      right: 0%;
+    }
+  }
   .profileInitial {
     position: absolute;
     bottom: 50%;

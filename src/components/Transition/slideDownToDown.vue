@@ -13,7 +13,7 @@ export default {
     TransitionGroup,
   },
   mounted() {
-    console.log("Transition mounted");
+    // console.log("Transition mounted");
   },
 };
 </script>

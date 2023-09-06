@@ -48,7 +48,7 @@
           </div>
 
           <div :class="{ invisible: !error }" class="error-msg">
-            <p class="error-msg-txt">!!!{{ errorMsg }}!!!</p>
+            <p v-if="errorMsg" class="error-msg-txt">!!!{{ errorMsg }}!!!</p>
           </div>
 
           <div class="editor">
@@ -110,7 +110,6 @@ const storage = getStorage();
 
 // DATA
 const isUploading = ref(null);
-console.log("isUploading", isUploading);
 const error = ref(null);
 const errorMsg = ref(null);
 const postPhoto = ref(null);

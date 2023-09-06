@@ -7,9 +7,9 @@ export const aside = {
   mutations: {},
   getters: {},
   actions: {
-    toggleProfileMenu({ state }) {
-      state.profileMenu = !state.profileMenu;
-    },
+    //toggleProfileMenu({ state }) {
+    //  state.profileMenu = !state.profileMenu;
+    //},
     profileMenuOpen({ state }) {
       state.profileMenu = true;
     },

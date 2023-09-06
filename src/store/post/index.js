@@ -80,10 +80,14 @@ export const post = {
           };
           state.postPosts.push(postData);
         }
-        console.log("state.postPosts", state.postPosts);
+        //console.log("state.postPosts", state.postPosts);
       });
       commit("postsLoadedStatus", true);
       //console.log("getPosts", state.postPosts);
+    },
+    async updatePost({ commit, dispatch }, payload) {
+      commit("filterPost", payload);
+      await dispatch("getPosts");
     },
     async deletePost({ commit }, payload) {
       const getPost = await deleteDoc(doc(db, "posts", payload));
@@ -96,6 +100,14 @@ export const post = {
         return post.postID === currentPostID;
       });
       console.log("action currentPost", state.currentPost);
+    },
+    emptyPostFiled({ state, commit }) {
+      state.postTitle = "";
+      state.postTags = [];
+      state.postHTML = "";
+      state.postCoverName = "";
+      state.postCoverFileURL = null;
+      state.postCoverPreview = null;
     },
   },
 };

@@ -52,7 +52,7 @@ import { useRouter } from "vue-router";
 const store = useStore();
 const router = useRouter();
 const props = defineProps(["post"]);
-console.log("router", router);
+//console.log("router", router);
 
 // IMPORT COMPONENTS
 import Icon from "@components/Base/Icon.vue";
@@ -82,6 +82,10 @@ const editPost = () => {
     display: grid;
     column-gap: 25px;
     grid-template-columns: minmax(auto, 405px) minmax(auto, 408px);
+    @include media-breakpoint-down(md) {
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: unset;
+    }
     &:hover {
       .post-title-txt {
         background-size: 100% 1px;

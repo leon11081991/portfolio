@@ -31,5 +31,9 @@ const icon = defineAsyncComponent(() =>
     margin: 0;
     padding: 0;
   }
+  &.noGap {
+    margin: 0;
+    padding: 0;
+  }
 }
 </style>

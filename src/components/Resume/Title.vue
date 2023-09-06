@@ -16,10 +16,11 @@ export default {
 
 <style lang="scss" scoped>
 h1 {
-  font-weight: 800;
-  font-size: 18px;
-  letter-spacing: 6px;
-  margin: 0 0 1em 0;
-  text-transform: uppercase;
+  font-family: PingFang TC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: 0.5px;
 }
 </style>

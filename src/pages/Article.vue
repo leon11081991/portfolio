@@ -23,7 +23,7 @@
 
 <script setup>
 // IMPORT NECESSARY
-import { computed, onMounted, defineAsyncComponent } from "vue";
+import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 // VARIABLE NECESSARY
@@ -31,15 +31,11 @@ const store = useStore();
 const route = useRoute();
 
 // IMPORT COMPONENT
+import BackgroundLayout from "@/components/Layout/BackgroundLayout.vue";
+import BaseLayout from "@/components/Layout/BaseLayout.vue";
 import Loading from "@components/Base/Loading.vue";
 import PageAside from "@/components/Aside/PageAside.vue";
 import postCard from "@components/Post/PostCard.vue";
-const BackgroundLayout = defineAsyncComponent(() =>
-  import("../components/Layout/BackgroundLayout.vue")
-);
-const BaseLayout = defineAsyncComponent(() =>
-  import("../components/Layout/BaseLayout.vue")
-);
 
 // DATA
 const postPosts = computed(() => store.state.post.postPosts);

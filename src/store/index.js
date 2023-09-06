@@ -6,6 +6,7 @@ import { footer } from "./footer";
 import { user } from "./user";
 import { post } from "./post";
 import { project } from "./project";
+import { resume } from "./resume";
 
 export const store = createStore({
   modules: {
@@ -15,29 +16,30 @@ export const store = createStore({
     user,
     post,
     project,
+    resume,
   },
   state() {
     return {
-      loading: true,
+      loading: null,
       mobile: null,
       mobileBackground: null,
       windowWidth: null,
       socialList: [
         {
+          name: "codepen",
+          link: "https://codepen.io/leon11081991/pens/public",
+        },
+        {
           name: "github",
           link: "https://github.com/leon11081991",
         },
         {
-          name: "linkin",
-          link: "https://www.linkedin.com/in/yi-ting-chou-78653a270/",
+          name: "medium",
+          link: "https://medium.com/@leonchou1108",
         },
         {
           name: "notion",
-          link: "https://www.linkedin.com/in/yi-ting-chou-78653a270/",
-        },
-        {
-          name: "codepen",
-          link: "https://www.linkedin.com/in/yi-ting-chou-78653a270/",
+          link: "https://leonchou.notion.site/Programming-Notes-a64a591052274c359615884dcc4164d5?pvs=4",
         },
       ],
     };
@@ -53,17 +55,14 @@ export const store = createStore({
       if (state.windowWidth < 576) {
         state.mobile = true;
         state.mobileBackground = true;
-        //console.log("mobileBackground / " + state.mobileBackground);
         return;
       } else if (state.windowWidth < 768) {
         state.mobile = true;
         state.mobileBackground = false;
-        //console.log("Mobile / " + state.windowWidth + "px");
         return;
       } else {
         state.mobile = false;
         state.mobileBackground = false;
-        //console.log("Desktop / " + state.windowWidth + "px");
         return;
       }
     },

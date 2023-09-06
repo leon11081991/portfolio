@@ -1,21 +1,19 @@
 <template>
-  <Title :text="skillsLabel" />
-  <SubTitle :text="professionalLabel" />
-
-  <div class="skill-line" v-for="(skill, index) in skills" :key="index">
-    <!-- <img class="circle" src="@/assets/circle.svg" /> -->
-    <Paragraph :text="skill" />
-  </div>
+  <SubTitle :text="skillsLabel" />
+  <section class="skills-section">
+    <div class="skill-line" v-for="(skill, index) in skills" :key="index">
+      <Paragraph :mainText="skill" />
+    </div>
+  </section>
 </template>
 
 <script>
-import Title from "@/components/Resume/Title.vue";
-import SubTitle from "@/components/Resume/SubTitle.vue";
-import Paragraph from "@/components/Resume/Paragraph.vue";
+import SubTitle from "@components/Resume/SubTitle.vue";
+import Paragraph from "@components/Resume/Paragraph.vue";
 
 export default {
   Name: "Skills",
-  components: { Title, SubTitle, Paragraph },
+  components: { SubTitle, Paragraph },
   computed: {
     currentLanguage() {
       return this.$store.state.resume.currentLanguage;
@@ -40,23 +38,11 @@ export default {
 };
 </script>
 
-<style scoped>
-.circle {
-  width: 8px;
-  margin-left: 8px;
+<style lang="scss" scoped>
+.skills-section {
+  margin-top: 1rem;
 }
-
-.material-icons {
-  display: inline-flex;
-  align-items: center;
-}
-
 .skill-line {
   display: flex;
-}
-
-.contact {
-  padding-left: calc(1em + 8px);
-  margin: 0.25em;
 }
 </style>

@@ -1,19 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { store } from "../store/index";
 import { computed } from "vue";
+import { auth } from "@/firebase/firebaseInit";
 
-import Home from "@views/Home/Home.vue";
+import Home from "@/pages/Home.vue";
 
 const routes = [
   {
     // 首頁
     path: "/",
     name: "Home",
-    //component: Home,
-    component: () => import("../views/Home/Home.vue"),
+    component: Home,
+    // component: () => import("../pages/Home/Home.vue"),
     alias: ["/index", "/home"],
     meta: {
       title: "Home",
+      requiresAuth: false,
     },
   },
   {
@@ -21,97 +23,111 @@ const routes = [
     path: "/about",
     name: "About",
     // 以函式的形式加載路由，可以把各自的路由文件分别打包，只有在解析特定路由時，才會加載該路由component
-    component: () => import("../views/About.vue"),
+    component: () => import("../pages/About.vue"),
     meta: {
       title: "About Me",
+      requiresAuth: false,
+    },
+  },
+  {
+    // Resume
+    path: "/resume",
+    name: "Resume",
+    component: () => import("../pages/Resume.vue"),
+    meta: {
+      title: "Resume",
+      requiresAuth: false,
     },
   },
   {
     // 專案頁面
     path: "/projects",
     name: "Projects",
-    component: () => import("../views/Projects.vue"),
+    component: () => import("../pages/Projects.vue"),
     meta: {
       title: "Projects",
+      requiresAuth: false,
     },
   },
-  // {
-  //   // 文章頁面
-  //   path: "/article",
-  //   name: "ArticleLayout",
-  //   component: () => import("@views/Article/ArticleLayout.vue"),
-  //   meta: {
-  //     title: "Article",
-  //   },
-  //   children: [
-  //     {
-  //       // 文章列表頁面
-  //       path: "",
-  //       name: "Article",
-  //       component: () => import("@views/Article/Article.vue"),
-  //       alias: "/posts",
-  //       meta: {
-  //         title: "Article",
-  //       },
-  //       children: [],
-  //     },
-  //     {
-  //       // 文章內容頁面
-  //       path: "post/:postID",
-  //       name: "Post",
-  //       component: () => import("@views/Article/Post.vue"),
-  //       props: true,
-  //       meta: {
-  //         title: "Post",
-  //       },
-  //     },
-  //   ],
-  // },
   {
     // 文章列表頁面
     path: "/article",
     name: "Article",
-    component: () => import("../views/Article/Article.vue"),
+    component: () => import("../pages/Article.vue"),
     alias: "/posts",
     meta: {
       title: "Article",
+      requiresAuth: false,
     },
-    children: [],
   },
   {
     // 文章內容頁面
     path: "/post/:postID",
     name: "Post",
-    component: () => import("../views/Article/Post.vue"),
+    component: () => import("../pages/Post.vue"),
     props: true,
     meta: {
       title: "Post",
+      requiresAuth: false,
     },
   },
   {
     // 編輯文章內容頁面
     path: "/edit-post/:postID",
     name: "EditPost",
-    component: () => import("../views/EditPost.vue"),
+    component: () => import("../pages/EditPost.vue"),
     props: true,
     meta: {
       title: "Edit Post",
+      requiresAuth: true,
+      requiresAdmin: true,
     },
+  },
+  {
+    path: "/create-post",
+    name: "CreatePostLayout",
+    meta: {
+      title: "Create Post",
+      requiresAuth: true,
+      requiresAdmin: true,
+    },
+    children: [
+      {
+        path: "create",
+        name: "CreatePost",
+        component: () => import("../pages/CreatePost.vue"),
+        title: "Create Post",
+        requiresAuth: true,
+        requiresAdmin: true,
+      },
+
+      {
+        path: "preview",
+        name: "PostPreview",
+        component: () => import("../pages/PostPreview.vue"),
+        meta: {
+          title: "Post Preview",
+          requiresAuth: true,
+          requiresAdmin: true,
+        },
+      },
+    ],
   },
   {
     // 登入/註冊頁面
     path: "/login",
     name: "Login",
-    component: () => import("../views/Login.vue"),
+    component: () => import("../pages/Login.vue"),
     meta: {
       title: "Login",
+      requiresAuth: false,
     },
   },
   {
     // 個人資料頁面
     path: "/profile",
-    name: "ProfileLayout",
-    component: () => import("../views/Profile/ProfileLayout.vue"),
+    name: "ProfilePage",
+    component: () => import("../pages/ProfilePage.vue"),
     children: [
       {
         // 個人資料
@@ -120,6 +136,7 @@ const routes = [
         component: () => import("../views/Profile/Profile.vue"),
         meta: {
           title: "Profile",
+          requiresAuth: true,
         },
       },
       {
@@ -129,6 +146,7 @@ const routes = [
         component: () => import("../views/Profile/Setting.vue"),
         meta: {
           title: "Setting",
+          requiresAuth: true,
         },
       },
       {
@@ -138,30 +156,8 @@ const routes = [
         component: () => import("../views/Profile/Admin.vue"),
         meta: {
           title: "Admin",
-        },
-      },
-    ],
-  },
-  {
-    path: "/create-post",
-    name: "CreatePostLayout",
-    meta: {
-      title: "Create Post",
-    },
-    children: [
-      {
-        path: "create",
-        name: "CreatePost",
-        component: () => import("../views/CreatePost.vue"),
-        title: "Create Post",
-      },
-
-      {
-        path: "preview",
-        name: "PostPreview",
-        component: () => import("../views/PostPreview.vue"),
-        meta: {
-          title: "Post Preview",
+          requiresAuth: true,
+          requiresAdmin: true,
         },
       },
     ],
@@ -196,6 +192,12 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from) => {
+  // console.log("beforeEach");
+
+  // 讀取頁面顯示
+  store.state.loading = true;
+  // console.log("LOADING:", store.state.loading);
+
   // 設定頁面標籤title name
   document.title = `${to.meta.title} | LEON`;
 
@@ -204,14 +206,38 @@ router.beforeEach(async (to, from) => {
   // 跳轉頁面時，將 profileMenu 收合
   store.state.aside.profileMenu = false;
 
-  const admin = store.state.user.profileAdmin;
+  // const admin = store.state.user.profileAdmin;
 
-  //const admin = computed(() => store.state.user.profileAdmin);
+  const admin = computed(() => store.state.user.profileAdmin);
   // 是Admin才能建立文章、預覽文章
   if (to.path.startsWith("/create-post") && !admin) {
     return Promise.resolve({ name: "Login" });
     // }
   }
+});
+
+router.beforeEach(async (to, from, next) => {
+  let user = auth.currentUser;
+  let admin = null;
+
+  if (user) {
+    let token = await user.getIdTokenResult();
+    admin = token.claims.admin;
+  }
+
+  if (to.matched.some((res) => res.meta.requiresAuth)) {
+    if (user) {
+      if (to.matched.some((res) => res.meta.requiresAdmin)) {
+        if (admin) {
+          return next();
+        }
+        return next({ name: "Home" });
+      }
+      return next();
+    }
+    return next({ name: "Home" });
+  }
+  return next();
 });
 
 export { router };

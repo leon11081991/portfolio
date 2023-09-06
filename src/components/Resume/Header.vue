@@ -1,29 +1,21 @@
 <template>
-  <section class="actions-section">
-    <button class="print-button" @click="openPrintPage">
-      <Icon name="print" class="noGap" />
-    </button>
-  </section>
-
-  <div class="box">
-    <div class="person-info">
-      <Title class="person-info-name" :text="fullName" />
-      <SubTitle class="person-info-position" :text="position" />
-    </div>
-    <div class="person-photo">
-      <img class="person-photo-image" src="~@/assets/photo.png" />
-    </div>
+  <div class="person-photo">
+    <img class="person-photo-image" src="~@/assets/img/resume-photo.png" />
   </div>
+  <div class="person-tags">
+    <Tag v-for="(tag, index) in tags" :key="index" :tag="tag" />
+  </div>
+  <a :href="downloadLink" class="btn person-download" download="filename"
+    >Download</a
+  >
 </template>
 
 <script>
-import Title from "@/components/Resume/Title.vue";
-import SubTitle from "@/components/Resume/SubTitle.vue";
-import Icon from "@/components/Base/Icon.vue";
+import Tag from "@/components/Resume/Tag.vue";
 
 export default {
   Name: "Header",
-  components: { Title, SubTitle, Icon },
+  components: { Tag },
   computed: {
     currentResumeData() {
       return this.$store.state.resume.currentLanguage.data;
@@ -39,111 +31,56 @@ export default {
     position() {
       return this.currentResumeData.position;
     },
-  },
-
-  methods: {
-    openPrintPage() {
-      window.print();
+    tags() {
+      return this.currentResumeData.tags;
+    },
+    downloadLink() {
+      return this.currentResumeData.downloadLink;
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.actions-section {
-  display: flex;
-  position: absolute;
-  align-items: center;
-}
+.person-photo {
+  border-radius: 50%;
+  //height: 176px;
+  //width: 176px;
+  overflow: hidden;
 
-.language-switcher {
-  padding: 10px;
-}
-
-.print-button {
-  padding: 10px;
-  width: auto;
+  position: relative;
+  width: 100%;
   height: auto;
-  border: none !important;
-  cursor: pointer;
-  background-color: transparent;
-  -webkit-tap-highlight-color: transparent;
 
-  &:hover {
-    background-color: rgba($primary, 0.1);
-    transition: all 0.5s ease-out;
+  @include media-breakpoint-down(lg) {
+    width: auto;
+  }
+
+  &-image {
+    max-width: 100%;
   }
 }
 
-.person-info {
+.person-tags {
   display: flex;
   flex-direction: column;
-}
-
-.person-info-name {
-  margin: 0;
-  font-weight: 700;
-  font-size: 2em;
-  letter-spacing: 2px;
-  color: $white;
-}
-
-.person-info-position {
-  margin: 0px;
-  font-weight: 400;
-}
-
-.box {
-  padding: 45px;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.person-photo {
-}
-
-.person-photo-image {
-  border-radius: 50%;
-  height: 100px;
-  width: 100px;
-}
-
-@media (max-width: 21cm) {
-  .box {
-    padding-top: 20px;
-    flex-direction: column-reverse;
+  margin: 2rem 0;
+  gap: 12px;
+  flex: 0 0 auto;
+  @include media-breakpoint-down(lg) {
+    margin: 0 2rem;
   }
-
-  .person-info {
-    align-items: center;
-    justify-content: center;
-  }
-
-  .person-photo {
-    padding-bottom: 20px;
-  }
-
-  .person-info-name,
-  .person-info-position {
-    text-align: center;
-  }
-
-  .actions-section {
-    width: 100%;
-    justify-content: space-between;
+  @include media-breakpoint-down(md) {
   }
 }
 
-@media print {
-  .actions-section {
-    display: none;
+.person-download {
+  @include media-breakpoint-down(md) {
+    margin-left: auto;
   }
-
-  .box {
-    padding-top: 0px;
-    flex-direction: column-reverse;
+  @include media-breakpoint-down(sm) {
+    margin-left: initial;
   }
 }
 </style>

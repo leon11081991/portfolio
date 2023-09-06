@@ -8,7 +8,6 @@
   background: $primary;
   color: $white;
   transition: all 0.5s ease-in-out;
-  //cursor: pointer;
   &:hover {
     background: $secondary01;
     color: $white;
@@ -23,19 +22,6 @@
   text-align: center;
 }
 
-@keyframes draw {
-  to {
-    stroke-dashoffset: 314.16px;
-  }
-}
-@keyframes draw-back {
-  from {
-    stroke-dashoffset: 314.16px;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
 .btn {
   @extend %btn_base;
 
@@ -58,76 +44,6 @@
     &:hover {
       background: $gray04;
       color: $white;
-    }
-  }
-
-  &.readMore {
-    position: relative;
-    @extend .txt-btn;
-    border: none;
-    background: transparent;
-    color: $primary;
-    padding: 4px 69px 4px 0px;
-    &:hover {
-      svg {
-        circle {
-          animation: draw 1.3s;
-          animation-fill-mode: forwards;
-        }
-      }
-    }
-
-    .circle-wrapper {
-      position: absolute;
-      bottom: 0;
-      right: -22px;
-      transform: translateY(50%);
-      display: inline-block;
-      svg {
-        height: fit-content;
-        width: fit-content;
-        circle {
-          --circle-len: 314.16px;
-          fill: none;
-          stroke: $primary;
-          stroke-width: 1px;
-          stroke-dasharray: var(--circle-len);
-          stroke-dashoffset: 0;
-          transform: scaleX(-1);
-          transform-origin: center;
-          // animation: draw-back 1.5s;
-          animation-delay: 0s;
-          // animation-fill-mode: backwards;
-        }
-      }
-    }
-    .arrow {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 1px;
-      width: 157px;
-      background: $primary;
-      &::before,
-      &::after {
-        display: inline-block;
-        content: "";
-        position: absolute;
-        height: 1px;
-        width: 6px;
-        background: $primary;
-        border-radius: 2px;
-      }
-      &::before {
-        transform: rotate(45deg);
-        top: -2px;
-        right: -1px;
-      }
-      &::after {
-        transform: rotate(-45deg);
-        top: 2px;
-        right: -1px;
-      }
     }
   }
 

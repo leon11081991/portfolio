@@ -4,10 +4,10 @@
       <div class="initial"></div>
       <div class="controls">
         <span class="dele">
-          <DeleteIcon class="icon" />
+          <Icon name="delete" />
         </span>
         <span class="edit">
-          <EditIcon class="icon" />
+          <Icon name="edit" />
         </span>
       </div>
     </div>
@@ -54,9 +54,7 @@ const store = useStore();
 
 // IMPORT COMPONENTS
 import SectionHeading from "@components/Base/SectionHeading.vue";
-import DeleteIcon from "@assets/svg/delete.svg";
-import EditIcon from "@assets/svg/edit.svg";
-
+import Icon from "@components/Base/Icon.vue";
 // DATA
 const username = computed({
   get: () => {
@@ -75,10 +73,6 @@ console.log("admin", admin);
 const updateProfile = () => {
   store.dispatch("updateUserSetting");
 };
-
-onMounted(() => {
-  console.log("(Profile.vue) --- ON MOUNTED");
-});
 </script>
 
 <style lang="scss" scoped>

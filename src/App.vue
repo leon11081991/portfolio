@@ -1,26 +1,11 @@
 <template>
-  <div class="web_wrapper" :class="$route.name == 'Login' ? 'login' : ''">
-    <BackgroundLayout />
-
-    <template v-if="defaultWithNavigation">
-      <BaseLayout>
-        <!-- <router-view></router-view> -->
-        <router-view v-slot="{ Component, route }">
-          <transition name="fade">
-            <component :is="Component" :key="route.path" />
-          </transition>
-        </router-view>
-      </BaseLayout>
-    </template>
-
-    <template v-else>
-      <router-view v-slot="{ Component }">
-        <transition name="fade">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-    </template>
-  </div>
+  <Preloader v-if="showPreloader" />
+  <Loading v-if="store.state.loading" />
+  <router-view v-slot="{ Component, route }">
+    <transition name="fade" mode="out-in" appear>
+      <component :is="Component" :key="route.path" />
+    </transition>
+  </router-view>
 </template>
 
 <script setup>
@@ -31,31 +16,24 @@ import { useStore } from "vuex";
 // VARIABLE NECESSARY
 const route = useRoute();
 const store = useStore();
+
 // IMPORT COMPONENT
-// import LoadingBar from "@components/Base/Loading.vue";
-import BackgroundLayout from "@components/Layout/BackgroundLayout.vue";
-import BaseLayout from "@components/Layout/BaseLayout.vue";
+import Preloader from "@components/Base/Preloader.vue";
+import Loading from "@components/Base/Loading.vue";
 
 // IMPORT FIREBASE
 import { auth } from "./firebase/firebaseInit";
 import { onAuthStateChanged } from "firebase/auth";
 
 // DATA
-const defaultWithNavigation = ref(null);
+const showPreloader = ref(null);
 
 // METHODS
 // (1) 偵測視窗寬度
 const checkScreen = () => {
   store.dispatch("checkScreen");
 };
-// (2) 檢查路由
-const checkRoute = () => {
-  if (route.name === "Login" || route.name === "ForgotPassword") {
-    defaultWithNavigation.value = false;
-    return;
-  }
-  defaultWithNavigation.value = true;
-};
+
 // (3) 登入狀態改變
 onAuthStateChanged(auth, (currentUser) => {
   // 將 currentUser儲存在user, user的值也會為true;
@@ -70,7 +48,11 @@ onAuthStateChanged(auth, (currentUser) => {
 
 // ON MOUNTED
 onMounted(() => {
-  console.log("(App.vue) --- ON MOUNTED");
+  showPreloader.value = true;
+
+  setTimeout(() => {
+    showPreloader.value = false;
+  }, 9000);
   checkScreen(); // 初始偵測當前視窗寬度
   window.addEventListener("resize", checkScreen); // 偵測當前視窗寬度
 });
@@ -80,19 +62,27 @@ watch(
   // 路由發生變化時
   () => route.name,
   (newVal, oldVal) => {
-    checkRoute();
+    // checkRoute();
     console.log(`NewRoute: ${newVal} / OldRoute: ${oldVal}`);
   }
 );
 </script>
 
 <style lang="scss">
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+.fade {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity 2s ease-in;
+  }
+  &-enter {
+    &-from {
+      opacity: 0;
+    }
+  }
+  &-leave {
+    &-to {
+      opacity: 1;
+    }
+  }
 }
 </style>

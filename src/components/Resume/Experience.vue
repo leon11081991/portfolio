@@ -1,44 +1,35 @@
 <template>
   <Title :text="experienceLabel" />
-  <section
-    class="experience-section"
-    v-for="(experience, index) in experiences"
-    :key="index"
-  >
-    <section class="work-position-section">
-      <SubTitle :text="experience.workPosition" />
-      <SubTitle :text="experience.workPeriod" />
-    </section>
-
-    <Headline :text="experience.companyName" />
-    <Paragraph
-      v-for="(desc, index) in experience.description"
+  <section class="experience-section">
+    <section
+      v-for="(experience, index) in experiences"
       :key="index"
-      :text="desc"
-    />
+      class="experience-wrap"
+    >
+      <Paragraph :mainText="experience.workPeriod" />
+      <Paragraph
+        :mainText="experience.companyName"
+        :subText="experience.workPosition"
+      />
+      <Paragraph :mainText="experience.workPositionEg" />
+    </section>
   </section>
 </template>
 
 <script>
 import Title from "@/components/Resume/Title.vue";
-import SubTitle from "@/components/Resume/SubTitle.vue";
-import Headline from "@/components/Resume/Headline.vue";
 import Paragraph from "@/components/Resume/Paragraph.vue";
 
 export default {
   Name: "Experience",
-
-  components: { Title, SubTitle, Headline, Paragraph },
-
+  components: { Title, Paragraph },
   computed: {
     currentLanguage() {
       return this.$store.state.resume.currentLanguage;
     },
-
     experienceLabel() {
       return this.currentLanguage.resumeLabels.experience;
     },
-
     experiences() {
       return this.currentLanguage.data.experience;
     },
@@ -48,16 +39,9 @@ export default {
 
 <style scoped>
 .experience-section {
-  margin-bottom: 2em;
+  margin-top: 1rem;
 }
-
-/* .experience-section:last-child {
-  margin-bottom: 0;
-} */
-
-.work-position-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.experience-wrap:not(:last-child) {
+  margin-bottom: 1rem;
 }
 </style>

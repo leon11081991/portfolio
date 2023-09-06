@@ -22,7 +22,7 @@ body {
     padding-right: initial;
     padding-bottom: $footer_h-pad * 1px;
   }
-  &.login {
+  &.Login {
     padding-top: initial;
     padding-right: initial;
     padding-bottom: initial;
@@ -45,20 +45,22 @@ body {
   @media (min-width: 768px) {
     max-width: 89.5%;
   }
-  @media (min-width: 1280px) {
-    //max-width: 1176px;
+  @media (min-width: 1200px) {
     max-width: 1200px;
   }
 }
 
 .mainContent {
-  padding-top: 64px;
-  padding-bottom: 64px;
+  padding-top: $mainPage_pt-desktop * 1px;
+  padding-bottom: $mainPage_pb-desktop * 1px;
   min-height: calc(100vh - $header_h-desktop * 1px - $footer_h-desktop * 1px);
-}
 
-.webgl {
-  position: fixed;
-  top: 0;
-  left: 0;
+  &.Home {
+    padding: 0;
+    display: flex;
+    @include media-breakpoint-down(md) {
+      padding-top: $mainPage_pt-pad * 1px;
+      padding-bottom: $mainPage_pb-pad * 1px;
+    }
+  }
 }

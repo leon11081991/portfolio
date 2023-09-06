@@ -3,7 +3,7 @@
     <ul class="socialMedia-list">
       <li
         class="socialMedia-item"
-        v-for="(social, index) in socialList"
+        v-for="social in socialList"
         :key="social.name"
       >
         <a :href="social.link" class="socialMedia-item-link" target="_blank">
@@ -35,6 +35,7 @@ const socialList = computed(() => store.state.socialList);
   display: flex;
   justify-content: center;
   align-items: center;
+  background: $white;
   &-list {
     display: flex;
     flex-direction: column;
@@ -63,6 +64,7 @@ const socialList = computed(() => store.state.socialList);
     }
   }
   &.headerMenu {
+    background: transparent;
     .socialMedia-list {
       flex-direction: row;
     }

@@ -4,14 +4,14 @@
       <p class="modal-card-title">{{ modalTitle }}</p>
     </header>
     <div class="modal-card-content">
-      <div class="authByOthers">
+      <!-- <div class="authByOthers">
         <a href="/auth/" class="socialLogin">
           <Icon name="facebook" class="initial" />
         </a>
         <a href="/auth/" class="socialLogin">
           <Icon name="google" class="initial" />
         </a>
-      </div>
+      </div> -->
       <form @submit="submitCheckForm" method="post">
         <section class="modal-card-form">
           <!-- 登入表單 Start-->
@@ -58,6 +58,7 @@
                   class=""
                   type="text"
                   placeholder="Aa123456"
+                  autocomplete="username"
                   name="userEName"
                   v-model="userName"
                 />
@@ -89,6 +90,7 @@
                   type="password"
                   placeholder="********"
                   name="userPassword"
+                  autocomplete="current-password"
                   v-model="password"
                 />
               </div>
@@ -213,12 +215,6 @@ const submitCheckForm = async (event) => {
       console.log("password is empty. ", passwordWithError.value);
       return;
     }
-
-    // if (repeatPassword.value !== password.value) {
-    //  repeatPasswordWithError.value = true;
-    //console.log("repeatPassword is not the same. ", repeatPassword.value);
-    //
-    // }
   }
 
   emit("loginModalSubmit", {

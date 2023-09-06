@@ -1,5 +1,5 @@
 <template>
-  <h2>{{ text }}</h2>
+  <h2 class="subtitle">{{ text }}</h2>
 </template>
 
 <script>
@@ -15,14 +15,13 @@ export default {
 };
 </script>
 
-<style scoped>
-h2 {
-  color: #9f7051;
-  margin: 0 0 1em 0;
-  line-height: 22px;
-  letter-spacing: 4px;
-  font-size: 14px;
-  font-weight: 800;
-  text-transform: uppercase;
+<style lang="scss" scoped>
+h2.subtitle {
+  font-family: PingFang TC;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: 0.5px;
 }
 </style>

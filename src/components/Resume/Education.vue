@@ -1,36 +1,34 @@
 <template>
-  <Title :text="educationLabel" />
-  <section
-    class="education-section"
-    v-for="(education, index) in educations"
-    :key="index"
-  >
-    <SubTitle :text="education.degreeTitle" />
-    <Headline :text="education.institutionName" />
-    <Paragraph :text="education.studyDirection" />
+  <SubTitle :text="educationLabel" />
+  <section class="education-section">
+    <section
+      class="education-wrap"
+      v-for="(education, index) in educations"
+      :key="index"
+    >
+      <Paragraph
+        :mainText="education.institutionName"
+        :subText="education.degreeTitle"
+      />
+      <Paragraph :mainText="education.studyDirection" />
+    </section>
   </section>
 </template>
 
 <script>
-import Title from "@/components/Resume/Title.vue";
-import Headline from "@/components/Resume/Headline.vue";
 import SubTitle from "@/components/Resume/SubTitle.vue";
 import Paragraph from "@/components/Resume/Paragraph.vue";
 
 export default {
   Name: "Education",
-
-  components: { Title, Headline, SubTitle, Paragraph },
-
+  components: { SubTitle, Paragraph },
   computed: {
     currentLanguage() {
       return this.$store.state.resume.currentLanguage;
     },
-
     educationLabel() {
       return this.currentLanguage.resumeLabels.education;
     },
-
     educations() {
       return this.currentLanguage.data.education;
     },
@@ -40,10 +38,9 @@ export default {
 
 <style scoped>
 .education-section {
-  margin-bottom: 2em;
+  margin-top: 1rem;
 }
-
-.education-section:last-child {
-  margin-bottom: 0;
+.education-wrap:not(:last-child) {
+  margin-bottom: 1rem;
 }
 </style>

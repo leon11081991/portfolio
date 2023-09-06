@@ -11,6 +11,8 @@
       v-if="admin && $route.name == 'Article' && !$route.params.postID"
       class="create-post"
     >
+      <!-- <router-link :to="{ name: 'CreatePost' }" @click="emptyFiled" class="btn"
+        >新增文章 -->
       <router-link :to="{ name: 'CreatePost' }" class="btn"
         >新增文章
         <Icon name="plus" />
@@ -48,12 +50,26 @@ const currentRouteName = computed(() => route.name.toUpperCase());
 const handleSignOut = () => {
   store.dispatch("signOutCurrentUser");
 };
+
+const emptyFiled = () => {
+  store.dispatch("emptyPostFiled");
+};
 </script>
 
 <style lang="scss" scoped>
 .page-aside {
+  position: fixed;
+  top: ($header_h-desktop + $mainPage_pt-desktop) * 1px;
   display: flex;
   flex-direction: column;
+  height: 500px;
+  width: $aside_proportion * 1%;
+  @include media-breakpoint-down(lg) {
+    position: relative;
+    height: unset;
+    top: inherit;
+    width: inherit;
+  }
 }
 .create-post {
   display: inline-flex;

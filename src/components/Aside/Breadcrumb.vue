@@ -5,13 +5,24 @@
         <Icon name="home" />
       </router-link>
     </div>
+
     <span class="slash">/</span>
+
     <div class="breadcrumb-item" v-for="item in levelList" :key="item.name">
-      <a class="breadcrumb-item-link">{{ item.name.toUpperCase() }}</a>
+      <router-link
+        :to="{ name: item.name }"
+        class="breadcrumb-item-link"
+        :class="route.params && postTitle ? 'canAccess' : 'notAccess'"
+      >
+        {{ item.name.toUpperCase() }}
+      </router-link>
     </div>
-    <div v-if="route.params && postTitle" class="breadcrumb-item">
-      <a class="breadcrumb-item-link">{{ postTitle }}</a>
-    </div>
+    <template v-if="route.params && postTitle">
+      <span class="slash">/</span>
+      <div class="breadcrumb-item">
+        <a class="breadcrumb-item-link">{{ postTitle }}</a>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -92,6 +103,11 @@ onBeforeMount(() => {
 
   .slash {
     color: rgba($primary, 0.3);
+    line-height: 22px;
+  }
+
+  .notAccess {
+    cursor: auto;
   }
 }
 </style>

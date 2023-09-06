@@ -45,22 +45,28 @@ import { useStore } from "vuex";
 // VARIABLE NECESSARY
 defineEmits(["clickSignOut"]);
 const store = useStore();
-
 // IMPORT COMPONENTS
 import Icon from "@components/Base/Icon.vue";
 
 const admin = computed(() => store.state.user.profileAdmin);
-//console.log("admin", admin);
 </script>
 
 <style lang="scss" scoped>
 .profile-menu {
   position: fixed;
   bottom: $footer_h-desktop * 1px;
-  right: 0;
-  background: $primary;
+  //right: 0;
+  background: $gray01;
   color: $white;
+  border-radius: 24px 0px 0px 0px;
   z-index: $aside_zIndex + 1;
+
+  right: -100%;
+  transition: all 0.8s $easeInOutQuart;
+  @include media-breakpoint-down(md) {
+    background: $primary;
+  }
+
   &-inner {
     padding: 24px 40px;
   }
@@ -68,9 +74,13 @@ const admin = computed(() => store.state.user.profileAdmin);
     position: relative;
     padding-bottom: 1rem;
     display: flex;
-    grid-template-areas:
-      "initial userName"
-      ". email";
+    //grid-template-areas:
+    //"initial userName"
+    //". email";
+    @include media-breakpoint-down(md) {
+      flex-direction: column;
+      align-items: center;
+    }
     &::after {
       position: absolute;
       content: "";
@@ -82,6 +92,26 @@ const admin = computed(() => store.state.user.profileAdmin);
     &-details {
       flex: 1;
       margin-left: 2rem;
+      max-width: 200px;
+
+      .userName,
+      .email {
+        word-break: normal;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      @include media-breakpoint-down(lg) {
+        max-width: unset;
+      }
+
+      @include media-breakpoint-down(md) {
+        margin-left: unset;
+
+        .userName,
+        .email {
+          text-align: center;
+        }
+      }
     }
     .initial {
       width: 56px;
@@ -91,6 +121,7 @@ const admin = computed(() => store.state.user.profileAdmin);
       justify-content: center;
       align-items: center;
       background: rgba($white, 0.3);
+      flex: 0 0 auto;
     }
   }
   .options {
@@ -113,6 +144,24 @@ const admin = computed(() => store.state.user.profileAdmin);
     }
     .icon {
       fill: $white;
+    }
+  }
+
+  &.webHeader {
+    position: relative;
+    bottom: unset;
+    right: unset;
+
+    .profile-menu-inner {
+      padding: 30px 0;
+    }
+    .options {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      //justify-content: center;
+      //gap: 1rem;
     }
   }
 }

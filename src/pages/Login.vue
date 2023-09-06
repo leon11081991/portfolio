@@ -71,8 +71,9 @@ const loginModalSubmit = async (data) => {
     //console.log("register data", data);
     try {
       // 建立使用者
+      console.log("建立使用者");
       await createUserWithEmailAndPassword(auth, data.email, data.password);
-
+      console.log("firebase建立使用者");
       // 新增註冊的使用者資料到 db
       // https://firebase.google.com/docs/firestore/manage-data/add-data#add_a_document
       await setDoc(doc(db, "users", auth.currentUser.uid), {
@@ -80,6 +81,7 @@ const loginModalSubmit = async (data) => {
         email: data.email,
         password: data.password,
       });
+      console.log("新增註冊的使用者資料到 db");
       console.log("Register success");
       // 跳轉回首頁
       router.push({ name: "Home" });

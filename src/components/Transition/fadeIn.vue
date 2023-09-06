@@ -8,7 +8,7 @@
 import { Transition, onMounted } from "vue";
 
 onMounted(() => {
-  console.log("Transition onMounted");
+  //console.log("Transition onMounted");
 });
 </script>
 

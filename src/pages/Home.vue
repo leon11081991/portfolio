@@ -12,24 +12,30 @@
 <script setup>
 // IMPORT NECESSARY
 import { reactive, onMounted } from "vue";
+
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
-// VARIABLE NECESSARY
-const store = useStore();
-const route = useRoute();
 
-// IMPORT COMPONENT
 import HeroSection from "@views/Home/HeroSection.vue";
 import BackgroundLayout from "@components/Layout/BackgroundLayout.vue";
 import BaseLayout from "@components/Layout/BaseLayout.vue";
 
-// DATA
+const store = useStore();
+const route = useRoute();
+
 const heroSection = reactive({
   name: "hero",
   intro: "Hi, my name is",
   title: "Leon Chou",
-  subTitle: "",
-  desc: "將設計與技術結合，創造出具有美感且有良好用戶體驗的網站和應用程式",
+  desc: [
+    "重視團隊、注重團隊合作",
+    "擁有團隊協作經驗",
+    "能互相理解、冷靜溝通",
+    "具備獨立完成專案的能力",
+    "主動積極解決問題、喜歡學習與分享",
+    "工作細心、有耐心",
+    "個性剛開始慢熟  //但熟了很活潑：）",
+  ],
 });
 
 onMounted(() => {

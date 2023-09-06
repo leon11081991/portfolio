@@ -7,6 +7,7 @@
 $primary: #0000b8;
 $secondary01: #040479;
 $secondary02: #eceffc;
+$secondary03: #eceffc;
 $gray01: #1a1a1a;
 $gray02: #5c5c5c;
 $gray03: #8f8f8f;
@@ -51,9 +52,6 @@ $grid-breakpoints: (
   lg: 992px,
   xl: 1200px,
   xxl: 1400px,
-  // lg: 1024px,
-  // xl: 1280px,
-  // xxl: 1366px,,,,,,,
 );
 $container-max-widths: (
   xs: 91.4%,
@@ -75,14 +73,22 @@ $post-card-img_h: 229.5;
 $post-card-img_w: 408;
 
 // Layout
+$mainPage_pt-desktop: 63;
+$mainPage_pb-desktop: 63;
+$mainPage_pt-pad: 40;
+$mainPage_pb-pad: 40;
 $header_h-desktop: 90;
 $header_h-pad: 90;
 $aside_w-desktop: 88;
 $aside_w-pad: 88;
 $footer_h-desktop: 90;
 $footer_h-pad: 90;
+$menu_top-desktop: 112;
+$menu_top-pad: 88;
+//$aside_proportion: 21.75;
+$aside_proportion: 17.5;
 
-$cursor_zIndex: 99999;
+$super_zIndex: 99999;
 $bg_zIndex: 100;
 $menu_zIndex: 150;
 $webNav_zIndex: 101;

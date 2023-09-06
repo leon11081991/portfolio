@@ -2,17 +2,28 @@
   <div class="profile-aside" v-if="route.matched[0].path == '/profile'">
     <nav class="profile-aside">
       <ul class="profile-aside-list">
-        <li
-          class="profile-aside-item"
-          v-for="(aside, index) in profileAside"
-          :key="aside.pathName"
-        >
+        <li class="profile-aside-item">
           <router-link
             class="profile-aside-item-link"
-            :to="{ name: aside.pathName }"
+            :to="{ name: 'Profile' }"
           >
-            <Icon :name="aside.icon" />
-            <span>{{ aside.title }}</span>
+            <Icon name="profile" />
+            <span>Profile</span>
+          </router-link>
+        </li>
+        <li class="profile-aside-item">
+          <router-link
+            class="profile-aside-item-link"
+            :to="{ name: 'Setting' }"
+          >
+            <Icon name="setting" />
+            <span>Setting</span>
+          </router-link>
+        </li>
+        <li v-if="admin" class="profile-aside-item">
+          <router-link class="profile-aside-item-link" :to="{ name: 'Admin' }">
+            <Icon name="admin" />
+            <span>Admin</span>
           </router-link>
         </li>
       </ul>
@@ -28,33 +39,18 @@
 
 <script setup>
 // IMPORT NECESSARY
-import { ref } from "vue";
+import { computed } from "vue";
 import { useRoute } from "vue-router";
+import { useStore } from "vuex";
 // VARIABLE NECESSARY
 const route = useRoute();
+const store = useStore();
+const admin = computed(() => store.state.user.profileAdmin);
+
 defineEmits(["clickSignOut"]);
 
 // IMPORT COMPONENTS
-import Icon from "@components/Base/Icon.vue";
-
-// DATA
-const profileAside = ref([
-  {
-    pathName: "Profile",
-    icon: "profile",
-    title: "Profile",
-  },
-  {
-    pathName: "Setting",
-    icon: "setting",
-    title: "Setting",
-  },
-  {
-    pathName: "Admin",
-    icon: "admin",
-    title: "Admin",
-  },
-]);
+import Icon from "@/components/Base/Icon.vue";
 </script>
 
 <style lang="scss" scoped>

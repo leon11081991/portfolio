@@ -33,7 +33,11 @@
             </ul>
           </div>
 
-          <ProfileMenu />
+          <ProfileMenu
+            v-if="mobile && userLogged"
+            @clickSignOut="handleSignOut"
+            class="webHeader"
+          />
 
           <div class="web_nav-subMain">
             <SocialMedia class="headerMenu" />
@@ -44,12 +48,11 @@
                 class="user-controller-link"
                 >Login / Register</router-link
               >
-              <span
-                v-else
-                @click.prevent="handleSignOut"
-                class="user-controller-link"
-                >Sign Out</span
-              >
+              <div v-else class="user-controller-link">
+                <span v-if="!mobile" @click.prevent="handleSignOut"
+                  >Sign Out</span
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -232,6 +235,9 @@ const handleSignOut = () => {
     height: 100%;
     width: 1px;
     background: rgba($white, 0.2);
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
   }
   &__inner {
     width: calc(949 / 1440) * 100%;
@@ -239,9 +245,18 @@ const handleSignOut = () => {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
+    padding-top: $menu_top-desktop * 1px;
+    //padding: $menu_top-desktop * 1px 0 0 0;
+    @include media-breakpoint-down(md) {
+      width: 80%;
+      padding-top: $menu_top-pad * 1px;
+    }
   }
   &-main {
-    margin: 88px 0;
+    margin-bottom: 88px;
+    @include media-breakpoint-down(md) {
+      margin-bottom: 0;
+    }
   }
   &-list {
     position: relative;
@@ -304,6 +319,12 @@ const handleSignOut = () => {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @include media-breakpoint-down(md) {
+      padding: 1rem 0;
+      flex-direction: column-reverse;
+      justify-content: center;
+      gap: 1rem;
+    }
 
     .user-controller {
       &-link {

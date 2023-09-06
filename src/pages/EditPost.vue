@@ -48,7 +48,7 @@
           </div>
 
           <div :class="{ invisible: !error }" class="error-msg">
-            <p class="error-msg-txt">!!!{{ errorMsg }}!!!</p>
+            <p v-if="errorMsg" class="error-msg-txt">!!!{{ errorMsg }}!!!</p>
           </div>
 
           <div class="editor">

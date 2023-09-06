@@ -2,25 +2,28 @@
   <div class="setting">
     <SectionHeading heading="Change Password"></SectionHeading>
     <div class="profile-info">
-      <div class="profile-field">
-        <label class="profile-field-title">Email</label>
-        <div class="profile-field-input admin-badge disabled">
-          <input id="email" type="text" name="email" v-model="email" />
+      <div class="profile-detail">
+        <div class="profile-field">
+          <label class="profile-field-title">Email</label>
+          <div class="profile-field-input admin-badge disabled">
+            <input id="email" type="text" name="email" v-model="email" />
+          </div>
+        </div>
+        <div class="profile-field">
+          <label class="profile-field-title">Password</label>
+          <div class="profile-field-input">
+            <input id="password" type="password" name="password" />
+          </div>
+        </div>
+        <div class="profile-field">
+          <label class="profile-field-title">Change Password</label>
+          <div class="profile-field-input">
+            <input id="password" type="password" name="password" />
+          </div>
         </div>
       </div>
-      <div class="profile-field">
-        <label class="profile-field-title">Password</label>
-        <div class="profile-field-input">
-          <input id="password" type="password" name="password" />
-        </div>
-      </div>
-      <div class="profile-field">
-        <label class="profile-field-title">Change Password</label>
-        <div class="profile-field-input">
-          <input id="password" type="password" name="password" />
-        </div>
-      </div>
-      <div class="profile-action">
+
+      <div class="profile-update">
         <button @click.prevent="" class="btn">Save</button>
       </div>
     </div>
@@ -50,7 +53,10 @@ onMounted(() => {
   flex-direction: column;
   max-width: 494px;
 }
-.profile-action {
+.profile-detail {
+  margin-bottom: 40px;
+}
+.profile-update {
   display: flex;
   justify-content: flex-end;
 }

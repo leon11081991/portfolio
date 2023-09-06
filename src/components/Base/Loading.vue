@@ -29,16 +29,18 @@ export default {
 $pacman-size: 60px;
 .loading {
   position: fixed;
-  z-index: 1;
+  z-index: $super_zIndex;
   //padding-top: $header_h-desktop * 1px;
   width: 100%;
-  height: calc(100vh - $header_h-desktop * 1px - $footer_h-desktop * 1px);
+  height: 100%;
+  //height: calc(100vh - $header_h-desktop * 1px - $footer_h-desktop * 1px);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  backdrop-filter: blur(8px); /* 模糊效果 */
-  -webkit-backdrop-filter: blur(8px);
+  background: $white;
+  //backdrop-filter: blur(8px); /* 模糊效果 */
+  //-webkit-backdrop-filter: blur(8px);
   .pac-man {
     position: relative;
     display: block;

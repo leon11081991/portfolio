@@ -1,6 +1,6 @@
 <template>
   <li class="project-item">
-    <a :href="project.link" class="project-item-link" target="_blank">
+    <a :href="project.projectLink" class="project-item-link" target="_blank">
       <div class="project-img">
         <div class="filter">
           <Icon name="magnifier" class="initial" />
